@@ -9,175 +9,134 @@
  *
  * @since 2.0.0
  */
-import { Ordering, monoidOrdering } from './Ordering'
-import { Semigroup } from './Semigroup'
-import { Eq } from './Eq'
-import { Contravariant1 } from './Contravariant'
-import { Monoid } from './Monoid'
-
-declare module './HKT' {
-  interface URItoKind<A> {
-    readonly Ord: Ord<A>
-  }
-}
-
+import { monoidOrdering } from './Ordering';
 /**
  * @since 2.0.0
  */
-export const URI = 'Ord'
-
-/**
- * @since 2.0.0
- */
-export type URI = typeof URI
-
-/**
- * @since 2.0.0
- */
-export interface Ord<A> extends Eq<A> {
-  readonly compare: (x: A, y: A) => Ordering
-}
-
+export var URI = 'Ord';
 // default compare for primitive types
-const compare = (x: any, y: any): Ordering => {
-  return x < y ? -1 : x > y ? 1 : 0
+var compare = function (x, y) {
+    return x < y ? -1 : x > y ? 1 : 0;
+};
+function strictEqual(a, b) {
+    return a === b;
 }
-
-function strictEqual<A>(a: A, b: A): boolean {
-  return a === b
-}
-
 /**
  * @since 2.0.0
  */
-export const ordString: Ord<string> = {
-  equals: strictEqual,
-  compare
-}
-
+export var ordString = {
+    equals: strictEqual,
+    compare: compare
+};
 /**
  * @since 2.0.0
  */
-export const ordNumber: Ord<number> = {
-  equals: strictEqual,
-  compare
-}
-
+export var ordNumber = {
+    equals: strictEqual,
+    compare: compare
+};
 /**
  * @since 2.0.0
  */
-export const ordBoolean: Ord<boolean> = {
-  equals: strictEqual,
-  compare
-}
-
+export var ordBoolean = {
+    equals: strictEqual,
+    compare: compare
+};
 /**
  * Test whether one value is _strictly less than_ another
  *
  * @since 2.0.0
  */
-export function lt<A>(O: Ord<A>): (x: A, y: A) => boolean {
-  return (x, y) => O.compare(x, y) === -1
+export function lt(O) {
+    return function (x, y) { return O.compare(x, y) === -1; };
 }
-
 /**
  * Test whether one value is _strictly greater than_ another
  *
  * @since 2.0.0
  */
-export function gt<A>(O: Ord<A>): (x: A, y: A) => boolean {
-  return (x, y) => O.compare(x, y) === 1
+export function gt(O) {
+    return function (x, y) { return O.compare(x, y) === 1; };
 }
-
 /**
  * Test whether one value is _non-strictly less than_ another
  *
  * @since 2.0.0
  */
-export function leq<A>(O: Ord<A>): (x: A, y: A) => boolean {
-  return (x, y) => O.compare(x, y) !== 1
+export function leq(O) {
+    return function (x, y) { return O.compare(x, y) !== 1; };
 }
-
 /**
  * Test whether one value is _non-strictly greater than_ another
  *
  * @since 2.0.0
  */
-export function geq<A>(O: Ord<A>): (x: A, y: A) => boolean {
-  return (x, y) => O.compare(x, y) !== -1
+export function geq(O) {
+    return function (x, y) { return O.compare(x, y) !== -1; };
 }
-
 /**
  * Take the minimum of two values. If they are considered equal, the first argument is chosen
  *
  * @since 2.0.0
  */
-export function min<A>(O: Ord<A>): (x: A, y: A) => A {
-  return (x, y) => (O.compare(x, y) === 1 ? y : x)
+export function min(O) {
+    return function (x, y) { return (O.compare(x, y) === 1 ? y : x); };
 }
-
 /**
  * Take the maximum of two values. If they are considered equal, the first argument is chosen
  *
  * @since 2.0.0
  */
-export function max<A>(O: Ord<A>): (x: A, y: A) => A {
-  return (x, y) => (O.compare(x, y) === -1 ? y : x)
+export function max(O) {
+    return function (x, y) { return (O.compare(x, y) === -1 ? y : x); };
 }
-
 /**
  * Clamp a value between a minimum and a maximum
  *
  * @since 2.0.0
  */
-export function clamp<A>(O: Ord<A>): (low: A, hi: A) => (x: A) => A {
-  const minO = min(O)
-  const maxO = max(O)
-  return (low, hi) => (x) => maxO(minO(x, hi), low)
+export function clamp(O) {
+    var minO = min(O);
+    var maxO = max(O);
+    return function (low, hi) { return function (x) { return maxO(minO(x, hi), low); }; };
 }
-
 /**
  * Test whether a value is between a minimum and a maximum (inclusive)
  *
  * @since 2.0.0
  */
-export function between<A>(O: Ord<A>): (low: A, hi: A) => (x: A) => boolean {
-  const lessThanO = lt(O)
-  const greaterThanO = gt(O)
-  return (low, hi) => (x) => (lessThanO(x, low) || greaterThanO(x, hi) ? false : true)
+export function between(O) {
+    var lessThanO = lt(O);
+    var greaterThanO = gt(O);
+    return function (low, hi) { return function (x) { return (lessThanO(x, low) || greaterThanO(x, hi) ? false : true); }; };
 }
-
 /**
  * @since 2.0.0
  */
-export function fromCompare<A>(compare: (x: A, y: A) => Ordering): Ord<A> {
-  const optimizedCompare = (x: A, y: A): Ordering => (x === y ? 0 : compare(x, y))
-  return {
-    equals: (x, y) => optimizedCompare(x, y) === 0,
-    compare: optimizedCompare
-  }
+export function fromCompare(compare) {
+    var optimizedCompare = function (x, y) { return (x === y ? 0 : compare(x, y)); };
+    return {
+        equals: function (x, y) { return optimizedCompare(x, y) === 0; },
+        compare: optimizedCompare
+    };
 }
-
-const S: Semigroup<Ord<any>> = {
-  concat: (x, y) => fromCompare((a, b) => monoidOrdering.concat(x.compare(a, b), y.compare(a, b)))
-}
-
+var S = {
+    concat: function (x, y) { return fromCompare(function (a, b) { return monoidOrdering.concat(x.compare(a, b), y.compare(a, b)); }); }
+};
 /**
  * Use `getMonoid` instead
  *
  * @since 2.0.0
  * @deprecated
  */
-export function getSemigroup<A = never>(): Semigroup<Ord<A>> {
-  return S
+export function getSemigroup() {
+    return S;
 }
-
-const M = {
-  // tslint:disable-next-line: deprecation
-  concat: getSemigroup<any>().concat,
-  empty: fromCompare(() => 0)
-}
-
+var M = {
+    // tslint:disable-next-line: deprecation
+    concat: getSemigroup().concat,
+    empty: fromCompare(function () { return 0; })
+};
 /**
  * Returns a `Monoid` such that:
  *
@@ -241,10 +200,9 @@ const M = {
  *
  * @since 2.4.0
  */
-export function getMonoid<A = never>(): Monoid<Ord<A>> {
-  return M
+export function getMonoid() {
+    return M;
 }
-
 /**
  * Given a tuple of `Ord`s returns an `Ord` for the tuple
  *
@@ -258,43 +216,41 @@ export function getMonoid<A = never>(): Monoid<Ord<A>> {
  *
  * @since 2.0.0
  */
-export function getTupleOrd<T extends ReadonlyArray<Ord<any>>>(
-  ...ords: T
-): Ord<{ [K in keyof T]: T[K] extends Ord<infer A> ? A : never }> {
-  const len = ords.length
-  return fromCompare((x, y) => {
-    let i = 0
-    for (; i < len - 1; i++) {
-      const r = ords[i].compare(x[i], y[i])
-      if (r !== 0) {
-        return r
-      }
+export function getTupleOrd() {
+    var ords = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        ords[_i] = arguments[_i];
     }
-    return ords[i].compare(x[i], y[i])
-  })
+    var len = ords.length;
+    return fromCompare(function (x, y) {
+        var i = 0;
+        for (; i < len - 1; i++) {
+            var r = ords[i].compare(x[i], y[i]);
+            if (r !== 0) {
+                return r;
+            }
+        }
+        return ords[i].compare(x[i], y[i]);
+    });
 }
-
 /**
  * @since 2.0.0
  */
-export function getDualOrd<A>(O: Ord<A>): Ord<A> {
-  return fromCompare((x, y) => O.compare(y, x))
+export function getDualOrd(O) {
+    return fromCompare(function (x, y) { return O.compare(y, x); });
 }
-
 /**
  * @since 2.0.0
  */
-export const ord: Contravariant1<URI> = {
-  URI,
-  contramap: (fa, f) => fromCompare((x, y) => fa.compare(f(x), f(y)))
-}
-
+export var ord = {
+    URI: URI,
+    contramap: function (fa, f) { return fromCompare(function (x, y) { return fa.compare(f(x), f(y)); }); }
+};
 /**
  * @since 2.0.0
  */
-export const contramap: <A, B>(f: (b: B) => A) => (fa: Ord<A>) => Ord<B> = (f) => (fa) => ord.contramap(fa, f)
-
+export var contramap = function (f) { return function (fa) { return ord.contramap(fa, f); }; };
 /**
  * @since 2.0.0
  */
-export const ordDate: Ord<Date> = ord.contramap(ordNumber, (date) => date.valueOf())
+export var ordDate = ord.contramap(ordNumber, function (date) { return date.valueOf(); });

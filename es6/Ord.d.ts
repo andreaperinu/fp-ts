@@ -9,175 +9,101 @@
  *
  * @since 2.0.0
  */
-import { Ordering, monoidOrdering } from './Ordering'
+import { Ordering } from './Ordering'
 import { Semigroup } from './Semigroup'
 import { Eq } from './Eq'
 import { Contravariant1 } from './Contravariant'
 import { Monoid } from './Monoid'
-
 declare module './HKT' {
   interface URItoKind<A> {
     readonly Ord: Ord<A>
   }
 }
-
 /**
  * @since 2.0.0
  */
-export const URI = 'Ord'
-
+export declare const URI = 'Ord'
 /**
  * @since 2.0.0
  */
-export type URI = typeof URI
-
+export declare type URI = typeof URI
 /**
  * @since 2.0.0
  */
 export interface Ord<A> extends Eq<A> {
   readonly compare: (x: A, y: A) => Ordering
 }
-
-// default compare for primitive types
-const compare = (x: any, y: any): Ordering => {
-  return x < y ? -1 : x > y ? 1 : 0
-}
-
-function strictEqual<A>(a: A, b: A): boolean {
-  return a === b
-}
-
 /**
  * @since 2.0.0
  */
-export const ordString: Ord<string> = {
-  equals: strictEqual,
-  compare
-}
-
+export declare const ordString: Ord<string>
 /**
  * @since 2.0.0
  */
-export const ordNumber: Ord<number> = {
-  equals: strictEqual,
-  compare
-}
-
+export declare const ordNumber: Ord<number>
 /**
  * @since 2.0.0
  */
-export const ordBoolean: Ord<boolean> = {
-  equals: strictEqual,
-  compare
-}
-
+export declare const ordBoolean: Ord<boolean>
 /**
  * Test whether one value is _strictly less than_ another
  *
  * @since 2.0.0
  */
-export function lt<A>(O: Ord<A>): (x: A, y: A) => boolean {
-  return (x, y) => O.compare(x, y) === -1
-}
-
+export declare function lt<A>(O: Ord<A>): (x: A, y: A) => boolean
 /**
  * Test whether one value is _strictly greater than_ another
  *
  * @since 2.0.0
  */
-export function gt<A>(O: Ord<A>): (x: A, y: A) => boolean {
-  return (x, y) => O.compare(x, y) === 1
-}
-
+export declare function gt<A>(O: Ord<A>): (x: A, y: A) => boolean
 /**
  * Test whether one value is _non-strictly less than_ another
  *
  * @since 2.0.0
  */
-export function leq<A>(O: Ord<A>): (x: A, y: A) => boolean {
-  return (x, y) => O.compare(x, y) !== 1
-}
-
+export declare function leq<A>(O: Ord<A>): (x: A, y: A) => boolean
 /**
  * Test whether one value is _non-strictly greater than_ another
  *
  * @since 2.0.0
  */
-export function geq<A>(O: Ord<A>): (x: A, y: A) => boolean {
-  return (x, y) => O.compare(x, y) !== -1
-}
-
+export declare function geq<A>(O: Ord<A>): (x: A, y: A) => boolean
 /**
  * Take the minimum of two values. If they are considered equal, the first argument is chosen
  *
  * @since 2.0.0
  */
-export function min<A>(O: Ord<A>): (x: A, y: A) => A {
-  return (x, y) => (O.compare(x, y) === 1 ? y : x)
-}
-
+export declare function min<A>(O: Ord<A>): (x: A, y: A) => A
 /**
  * Take the maximum of two values. If they are considered equal, the first argument is chosen
  *
  * @since 2.0.0
  */
-export function max<A>(O: Ord<A>): (x: A, y: A) => A {
-  return (x, y) => (O.compare(x, y) === -1 ? y : x)
-}
-
+export declare function max<A>(O: Ord<A>): (x: A, y: A) => A
 /**
  * Clamp a value between a minimum and a maximum
  *
  * @since 2.0.0
  */
-export function clamp<A>(O: Ord<A>): (low: A, hi: A) => (x: A) => A {
-  const minO = min(O)
-  const maxO = max(O)
-  return (low, hi) => (x) => maxO(minO(x, hi), low)
-}
-
+export declare function clamp<A>(O: Ord<A>): (low: A, hi: A) => (x: A) => A
 /**
  * Test whether a value is between a minimum and a maximum (inclusive)
  *
  * @since 2.0.0
  */
-export function between<A>(O: Ord<A>): (low: A, hi: A) => (x: A) => boolean {
-  const lessThanO = lt(O)
-  const greaterThanO = gt(O)
-  return (low, hi) => (x) => (lessThanO(x, low) || greaterThanO(x, hi) ? false : true)
-}
-
+export declare function between<A>(O: Ord<A>): (low: A, hi: A) => (x: A) => boolean
 /**
  * @since 2.0.0
  */
-export function fromCompare<A>(compare: (x: A, y: A) => Ordering): Ord<A> {
-  const optimizedCompare = (x: A, y: A): Ordering => (x === y ? 0 : compare(x, y))
-  return {
-    equals: (x, y) => optimizedCompare(x, y) === 0,
-    compare: optimizedCompare
-  }
-}
-
-const S: Semigroup<Ord<any>> = {
-  concat: (x, y) => fromCompare((a, b) => monoidOrdering.concat(x.compare(a, b), y.compare(a, b)))
-}
-
+export declare function fromCompare<A>(compare: (x: A, y: A) => Ordering): Ord<A>
 /**
  * Use `getMonoid` instead
  *
  * @since 2.0.0
  * @deprecated
  */
-export function getSemigroup<A = never>(): Semigroup<Ord<A>> {
-  return S
-}
-
-const M = {
-  // tslint:disable-next-line: deprecation
-  concat: getSemigroup<any>().concat,
-  empty: fromCompare(() => 0)
-}
-
+export declare function getSemigroup<A = never>(): Semigroup<Ord<A>>
 /**
  * Returns a `Monoid` such that:
  *
@@ -241,10 +167,7 @@ const M = {
  *
  * @since 2.4.0
  */
-export function getMonoid<A = never>(): Monoid<Ord<A>> {
-  return M
-}
-
+export declare function getMonoid<A = never>(): Monoid<Ord<A>>
 /**
  * Given a tuple of `Ord`s returns an `Ord` for the tuple
  *
@@ -258,43 +181,26 @@ export function getMonoid<A = never>(): Monoid<Ord<A>> {
  *
  * @since 2.0.0
  */
-export function getTupleOrd<T extends ReadonlyArray<Ord<any>>>(
+export declare function getTupleOrd<T extends ReadonlyArray<Ord<any>>>(
   ...ords: T
-): Ord<{ [K in keyof T]: T[K] extends Ord<infer A> ? A : never }> {
-  const len = ords.length
-  return fromCompare((x, y) => {
-    let i = 0
-    for (; i < len - 1; i++) {
-      const r = ords[i].compare(x[i], y[i])
-      if (r !== 0) {
-        return r
-      }
-    }
-    return ords[i].compare(x[i], y[i])
-  })
-}
-
+): Ord<
+  {
+    [K in keyof T]: T[K] extends Ord<infer A> ? A : never
+  }
+>
 /**
  * @since 2.0.0
  */
-export function getDualOrd<A>(O: Ord<A>): Ord<A> {
-  return fromCompare((x, y) => O.compare(y, x))
-}
-
+export declare function getDualOrd<A>(O: Ord<A>): Ord<A>
 /**
  * @since 2.0.0
  */
-export const ord: Contravariant1<URI> = {
-  URI,
-  contramap: (fa, f) => fromCompare((x, y) => fa.compare(f(x), f(y)))
-}
-
+export declare const ord: Contravariant1<URI>
 /**
  * @since 2.0.0
  */
-export const contramap: <A, B>(f: (b: B) => A) => (fa: Ord<A>) => Ord<B> = (f) => (fa) => ord.contramap(fa, f)
-
+export declare const contramap: <A, B>(f: (b: B) => A) => (fa: Ord<A>) => Ord<B>
 /**
  * @since 2.0.0
  */
-export const ordDate: Ord<Date> = ord.contramap(ordNumber, (date) => date.valueOf())
+export declare const ordDate: Ord<Date>

@@ -247,7 +247,8 @@ export var ord = {
     URI: URI,
     contramap: function (fa, f) { return fromCompare(function (x, y) { return fa.compare(f(x), f(y)); }); }
 };
-var contramap = pipeable(ord).contramap;
+var pipeables = /*#__PURE__*/ pipeable(ord);
+var contramap = /*#__PURE__*/ (function () { return pipeables.contramap; })();
 export { 
 /**
  * @since 2.0.0

@@ -297,4 +297,4 @@ export const contramap: <A, B>(f: (b: B) => A) => (fa: Ord<A>) => Ord<B> = (f) =
 /**
  * @since 2.0.0
  */
-export const ordDate: Ord<Date> = ord.contramap(ordNumber, (date) => date.valueOf())
+export const ordDate: Ord<Date> = fromCompare((x, y) => ordNumber.compare(x.valueOf(), y.valueOf()))

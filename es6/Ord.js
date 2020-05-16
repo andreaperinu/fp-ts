@@ -253,4 +253,4 @@ export var contramap = function (f) { return function (fa) { return ord.contrama
 /**
  * @since 2.0.0
  */
-export var ordDate = ord.contramap(ordNumber, function (date) { return date.valueOf(); });
+export var ordDate = fromCompare(function (x, y) { return ordNumber.compare(x.valueOf(), y.valueOf()); });

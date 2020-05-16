@@ -196,10 +196,13 @@ export declare function getDualOrd<A>(O: Ord<A>): Ord<A>
  * @since 2.0.0
  */
 export declare const ord: Contravariant1<URI>
-/**
- * @since 2.0.0
- */
-export declare const contramap: <A, B>(f: (b: B) => A) => (fa: Ord<A>) => Ord<B>
+declare const contramap: <A, B>(f: (b: B) => A) => (fa: Ord<A>) => Ord<B>
+export {
+  /**
+   * @since 2.0.0
+   */
+  contramap
+}
 /**
  * @since 2.0.0
  */

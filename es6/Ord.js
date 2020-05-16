@@ -10,6 +10,7 @@
  * @since 2.0.0
  */
 import { monoidOrdering } from './Ordering';
+import { pipeable } from './pipeable';
 /**
  * @since 2.0.0
  */
@@ -246,11 +247,13 @@ export var ord = {
     URI: URI,
     contramap: function (fa, f) { return fromCompare(function (x, y) { return fa.compare(f(x), f(y)); }); }
 };
+var contramap = pipeable(ord).contramap;
+export { 
 /**
  * @since 2.0.0
  */
-export var contramap = function (f) { return function (fa) { return ord.contramap(fa, f); }; };
+contramap };
 /**
  * @since 2.0.0
  */
-export var ordDate = fromCompare(function (x, y) { return ordNumber.compare(x.valueOf(), y.valueOf()); });
+export var ordDate = ord.contramap(ordNumber, function (date) { return date.valueOf(); });

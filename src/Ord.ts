@@ -13,6 +13,7 @@ import { Ordering, monoidOrdering } from './Ordering'
 import { Semigroup } from './Semigroup'
 import { Eq } from './Eq'
 import { Contravariant1 } from './Contravariant'
+import { pipeable } from './pipeable'
 import { Monoid } from './Monoid'
 
 declare module './HKT' {
@@ -289,12 +290,16 @@ export const ord: Contravariant1<URI> = {
   contramap: (fa, f) => fromCompare((x, y) => fa.compare(f(x), f(y)))
 }
 
-/**
- * @since 2.0.0
- */
-export const contramap: <A, B>(f: (b: B) => A) => (fa: Ord<A>) => Ord<B> = (f) => (fa) => ord.contramap(fa, f)
+const { contramap } = pipeable(ord)
+
+export {
+  /**
+   * @since 2.0.0
+   */
+  contramap
+}
 
 /**
  * @since 2.0.0
  */
-export const ordDate: Ord<Date> = fromCompare((x, y) => ordNumber.compare(x.valueOf(), y.valueOf()))
+export const ordDate: Ord<Date> = ord.contramap(ordNumber, (date) => date.valueOf())

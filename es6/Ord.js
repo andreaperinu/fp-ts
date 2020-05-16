@@ -122,7 +122,7 @@ export function fromCompare(compare) {
     };
 }
 var S = {
-    concat: function (x, y) { return fromCompare(function (a, b) { return monoidOrdering.concat(x.compare(a, b), y.compare(a, b)); }); }
+    concat: function (x, y) { /*#__PURE__*/ return fromCompare(function (a, b) { return monoidOrdering.concat(x.compare(a, b), y.compare(a, b)); }); }
 };
 /**
  * Use `getMonoid` instead
@@ -135,8 +135,8 @@ export function getSemigroup() {
 }
 var M = {
     // tslint:disable-next-line: deprecation
-    concat: getSemigroup().concat,
-    empty: fromCompare(function () { return 0; })
+    concat: /*#__PURE__*/ (function () { return getSemigroup().concat; })(),
+    empty: /*#__PURE__*/ fromCompare(function () { return 0; })
 };
 /**
  * Returns a `Monoid` such that:

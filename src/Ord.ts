@@ -160,7 +160,7 @@ export function fromCompare<A>(compare: (x: A, y: A) => Ordering): Ord<A> {
 }
 
 const S: Semigroup<Ord<any>> = {
-  concat: (x, y) => fromCompare((a, b) => monoidOrdering.concat(x.compare(a, b), y.compare(a, b)))
+  concat: (x, y) => /*#__PURE__*/ fromCompare((a, b) => monoidOrdering.concat(x.compare(a, b), y.compare(a, b)))
 }
 
 /**
@@ -175,8 +175,8 @@ export function getSemigroup<A = never>(): Semigroup<Ord<A>> {
 
 const M = {
   // tslint:disable-next-line: deprecation
-  concat: getSemigroup<any>().concat,
-  empty: fromCompare(() => 0)
+  concat: /*#__PURE__*/ (() => getSemigroup<any>().concat)(),
+  empty: /*#__PURE__*/ fromCompare(() => 0)
 }
 
 /**

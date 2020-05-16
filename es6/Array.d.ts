@@ -842,52 +842,54 @@ export declare const array: Monad1<URI> &
   Witherable1<URI> &
   FunctorWithIndex1<URI, number> &
   FoldableWithIndex1<URI, number>
-declare const alt: <A>(that: () => A[]) => (fa: A[]) => A[],
-  ap: <A>(fa: A[]) => <B>(fab: ((a: A) => B)[]) => B[],
-  apFirst: <B>(fb: B[]) => <A>(fa: A[]) => A[],
-  apSecond: <B>(fb: B[]) => <A>(fa: A[]) => B[],
-  chain: <A, B>(f: (a: A) => B[]) => (ma: A[]) => B[],
-  chainFirst: <A, B>(f: (a: A) => B[]) => (ma: A[]) => A[],
-  duplicate: <A>(ma: A[]) => A[][],
-  extend: <A, B>(f: (fa: A[]) => B) => (ma: A[]) => B[],
-  filter: {
-    <A, B extends A>(refinement: Refinement<A, B>): (fa: A[]) => B[]
-    <A_1>(predicate: Predicate<A_1>): (fa: A_1[]) => A_1[]
-  },
-  filterMap: <A, B>(f: (a: A) => Option<B>) => (fa: A[]) => B[],
-  filterMapWithIndex: <A, B>(f: (i: number, a: A) => Option<B>) => (fa: A[]) => B[],
-  filterWithIndex: {
-    <A, B extends A>(refinementWithIndex: import('./FilterableWithIndex').RefinementWithIndex<number, A, B>): (
-      fa: A[]
-    ) => B[]
-    <A_1>(predicateWithIndex: import('./FilterableWithIndex').PredicateWithIndex<number, A_1>): (fa: A_1[]) => A_1[]
-  },
-  foldMap: <M>(M: Monoid<M>) => <A>(f: (a: A) => M) => (fa: A[]) => M,
-  foldMapWithIndex: <M>(M: Monoid<M>) => <A>(f: (i: number, a: A) => M) => (fa: A[]) => M,
-  map: <A, B>(f: (a: A) => B) => (fa: A[]) => B[],
-  mapWithIndex: <A, B>(f: (i: number, a: A) => B) => (fa: A[]) => B[],
-  partition: {
-    <A, B extends A>(refinement: Refinement<A, B>): (fa: A[]) => import('./Compactable').Separated<A[], B[]>
-    <A_1>(predicate: Predicate<A_1>): (fa: A_1[]) => import('./Compactable').Separated<A_1[], A_1[]>
-  },
-  partitionMap: <A, B, C>(f: (a: A) => Either<B, C>) => (fa: A[]) => import('./Compactable').Separated<B[], C[]>,
-  partitionMapWithIndex: <A, B, C>(
-    f: (i: number, a: A) => Either<B, C>
-  ) => (fa: A[]) => import('./Compactable').Separated<B[], C[]>,
-  partitionWithIndex: {
-    <A, B extends A>(refinementWithIndex: import('./FilterableWithIndex').RefinementWithIndex<number, A, B>): (
-      fa: A[]
-    ) => import('./Compactable').Separated<A[], B[]>
-    <A_1>(predicateWithIndex: import('./FilterableWithIndex').PredicateWithIndex<number, A_1>): (
-      fa: A_1[]
-    ) => import('./Compactable').Separated<A_1[], A_1[]>
-  },
-  reduce: <A, B>(b: B, f: (b: B, a: A) => B) => (fa: A[]) => B,
-  reduceRight: <A, B>(b: B, f: (a: A, b: B) => B) => (fa: A[]) => B,
-  reduceRightWithIndex: <A, B>(b: B, f: (i: number, a: A, b: B) => B) => (fa: A[]) => B,
-  reduceWithIndex: <A, B>(b: B, f: (i: number, b: B, a: A) => B) => (fa: A[]) => B,
-  compact: <A>(fa: Option<A>[]) => A[],
-  separate: <A, B>(fa: Either<A, B>[]) => import('./Compactable').Separated<A[], B[]>
+declare const alt: <A>(that: () => A[]) => (fa: A[]) => A[]
+declare const ap: <A>(fa: A[]) => <B>(fab: ((a: A) => B)[]) => B[]
+declare const apFirst: <B>(fb: B[]) => <A>(fa: A[]) => A[]
+declare const apSecond: <B>(fb: B[]) => <A>(fa: A[]) => B[]
+declare const chain: <A, B>(f: (a: A) => B[]) => (ma: A[]) => B[]
+declare const chainFirst: <A, B>(f: (a: A) => B[]) => (ma: A[]) => A[]
+declare const duplicate: <A>(ma: A[]) => A[][]
+declare const extend: <A, B>(f: (fa: A[]) => B) => (ma: A[]) => B[]
+declare const filter: {
+  <A, B extends A>(refinement: Refinement<A, B>): (fa: A[]) => B[]
+  <A_1>(predicate: Predicate<A_1>): (fa: A_1[]) => A_1[]
+}
+declare const filterMap: <A, B>(f: (a: A) => Option<B>) => (fa: A[]) => B[]
+declare const filterMapWithIndex: <A, B>(f: (i: number, a: A) => Option<B>) => (fa: A[]) => B[]
+declare const filterWithIndex: {
+  <A, B extends A>(refinementWithIndex: import('./FilterableWithIndex').RefinementWithIndex<number, A, B>): (
+    fa: A[]
+  ) => B[]
+  <A_1>(predicateWithIndex: import('./FilterableWithIndex').PredicateWithIndex<number, A_1>): (fa: A_1[]) => A_1[]
+}
+declare const foldMap: <M>(M: Monoid<M>) => <A>(f: (a: A) => M) => (fa: A[]) => M
+declare const foldMapWithIndex: <M>(M: Monoid<M>) => <A>(f: (i: number, a: A) => M) => (fa: A[]) => M
+declare const map: <A, B>(f: (a: A) => B) => (fa: A[]) => B[]
+declare const mapWithIndex: <A, B>(f: (i: number, a: A) => B) => (fa: A[]) => B[]
+declare const partition: {
+  <A, B extends A>(refinement: Refinement<A, B>): (fa: A[]) => import('./Compactable').Separated<A[], B[]>
+  <A_1>(predicate: Predicate<A_1>): (fa: A_1[]) => import('./Compactable').Separated<A_1[], A_1[]>
+}
+declare const partitionWithIndex: {
+  <A, B extends A>(refinementWithIndex: import('./FilterableWithIndex').RefinementWithIndex<number, A, B>): (
+    fa: A[]
+  ) => import('./Compactable').Separated<A[], B[]>
+  <A_1>(predicateWithIndex: import('./FilterableWithIndex').PredicateWithIndex<number, A_1>): (
+    fa: A_1[]
+  ) => import('./Compactable').Separated<A_1[], A_1[]>
+}
+declare const partitionMap: <A, B, C>(
+  f: (a: A) => Either<B, C>
+) => (fa: A[]) => import('./Compactable').Separated<B[], C[]>
+declare const partitionMapWithIndex: <A, B, C>(
+  f: (i: number, a: A) => Either<B, C>
+) => (fa: A[]) => import('./Compactable').Separated<B[], C[]>
+declare const reduce: <A, B>(b: B, f: (b: B, a: A) => B) => (fa: A[]) => B
+declare const reduceWithIndex: <A, B>(b: B, f: (i: number, b: B, a: A) => B) => (fa: A[]) => B
+declare const reduceRight: <A, B>(b: B, f: (a: A, b: B) => B) => (fa: A[]) => B
+declare const reduceRightWithIndex: <A, B>(b: B, f: (i: number, a: A, b: B) => B) => (fa: A[]) => B
+declare const compact: <A>(fa: Option<A>[]) => A[]
+declare const separate: <A, B>(fa: Either<A, B>[]) => import('./Compactable').Separated<A[], B[]>
 export {
   /**
    * @since 2.0.0

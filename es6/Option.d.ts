@@ -527,32 +527,32 @@ export declare const option: Monad1<URI> &
   Filterable1<URI> &
   Witherable1<URI> &
   MonadThrow1<URI>
-declare const alt: <A>(that: () => Option<A>) => (fa: Option<A>) => Option<A>,
-  ap: <A>(fa: Option<A>) => <B>(fab: Option<(a: A) => B>) => Option<B>,
-  apFirst: <B>(fb: Option<B>) => <A>(fa: Option<A>) => Option<A>,
-  apSecond: <B>(fb: Option<B>) => <A>(fa: Option<A>) => Option<B>,
-  chain: <A, B>(f: (a: A) => Option<B>) => (ma: Option<A>) => Option<B>,
-  chainFirst: <A, B>(f: (a: A) => Option<B>) => (ma: Option<A>) => Option<A>,
-  duplicate: <A>(ma: Option<A>) => Option<Option<A>>,
-  extend: <A, B>(f: (fa: Option<A>) => B) => (ma: Option<A>) => Option<B>,
-  filter: {
-    <A, B extends A>(refinement: Refinement<A, B>): (fa: Option<A>) => Option<B>
-    <A_1>(predicate: Predicate<A_1>): (fa: Option<A_1>) => Option<A_1>
-  },
-  filterMap: <A, B>(f: (a: A) => Option<B>) => (fa: Option<A>) => Option<B>,
-  flatten: <A>(mma: Option<Option<A>>) => Option<A>,
-  foldMap: <M>(M: Monoid<M>) => <A>(f: (a: A) => M) => (fa: Option<A>) => M,
-  map: <A, B>(f: (a: A) => B) => (fa: Option<A>) => Option<B>,
-  partition: {
-    <A, B extends A>(refinement: Refinement<A, B>): (fa: Option<A>) => Separated<Option<A>, Option<B>>
-    <A_1>(predicate: Predicate<A_1>): (fa: Option<A_1>) => Separated<Option<A_1>, Option<A_1>>
-  },
-  partitionMap: <A, B, C>(f: (a: A) => Either<B, C>) => (fa: Option<A>) => Separated<Option<B>, Option<C>>,
-  reduce: <A, B>(b: B, f: (b: B, a: A) => B) => (fa: Option<A>) => B,
-  reduceRight: <A, B>(b: B, f: (a: A, b: B) => B) => (fa: Option<A>) => B,
-  compact: <A>(fa: Option<Option<A>>) => Option<A>,
-  separate: <A, B>(fa: Option<Either<A, B>>) => Separated<Option<A>, Option<B>>,
-  fromEither: <E, A>(ma: Either<E, A>) => Option<A>
+declare const alt: <A>(that: () => Option<A>) => (fa: Option<A>) => Option<A>
+declare const ap: <A>(fa: Option<A>) => <B>(fab: Option<(a: A) => B>) => Option<B>
+declare const apFirst: <B>(fb: Option<B>) => <A>(fa: Option<A>) => Option<A>
+declare const apSecond: <B>(fb: Option<B>) => <A>(fa: Option<A>) => Option<B>
+declare const chain: <A, B>(f: (a: A) => Option<B>) => (ma: Option<A>) => Option<B>
+declare const chainFirst: <A, B>(f: (a: A) => Option<B>) => (ma: Option<A>) => Option<A>
+declare const duplicate: <A>(ma: Option<A>) => Option<Option<A>>
+declare const extend: <A, B>(f: (fa: Option<A>) => B) => (ma: Option<A>) => Option<B>
+declare const filter: {
+  <A, B extends A>(refinement: Refinement<A, B>): (fa: Option<A>) => Option<B>
+  <A_1>(predicate: Predicate<A_1>): (fa: Option<A_1>) => Option<A_1>
+}
+declare const filterMap: <A, B>(f: (a: A) => Option<B>) => (fa: Option<A>) => Option<B>
+declare const flatten: <A>(mma: Option<Option<A>>) => Option<A>
+declare const foldMap: <M>(M: Monoid<M>) => <A>(f: (a: A) => M) => (fa: Option<A>) => M
+declare const map: <A, B>(f: (a: A) => B) => (fa: Option<A>) => Option<B>
+declare const partition: {
+  <A, B extends A>(refinement: Refinement<A, B>): (fa: Option<A>) => Separated<Option<A>, Option<B>>
+  <A_1>(predicate: Predicate<A_1>): (fa: Option<A_1>) => Separated<Option<A_1>, Option<A_1>>
+}
+declare const partitionMap: <A, B, C>(f: (a: A) => Either<B, C>) => (fa: Option<A>) => Separated<Option<B>, Option<C>>
+declare const reduce: <A, B>(b: B, f: (b: B, a: A) => B) => (fa: Option<A>) => B
+declare const reduceRight: <A, B>(b: B, f: (a: A, b: B) => B) => (fa: Option<A>) => B
+declare const compact: <A>(fa: Option<Option<A>>) => Option<A>
+declare const separate: <A, B>(fa: Option<Either<A, B>>) => Separated<Option<A>, Option<B>>
+declare const fromEither: <E, A>(ma: Either<E, A>) => Option<A>
 export {
   /**
    * @since 2.0.0

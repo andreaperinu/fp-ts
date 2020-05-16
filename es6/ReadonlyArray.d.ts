@@ -861,54 +861,56 @@ export declare const readonlyArray: Monad1<URI> &
   Witherable1<URI> &
   FunctorWithIndex1<URI, number> &
   FoldableWithIndex1<URI, number>
-declare const alt: <A>(that: () => readonly A[]) => (fa: readonly A[]) => readonly A[],
-  ap: <A>(fa: readonly A[]) => <B>(fab: readonly ((a: A) => B)[]) => readonly B[],
-  apFirst: <B>(fb: readonly B[]) => <A>(fa: readonly A[]) => readonly A[],
-  apSecond: <B>(fb: readonly B[]) => <A>(fa: readonly A[]) => readonly B[],
-  chain: <A, B>(f: (a: A) => readonly B[]) => (ma: readonly A[]) => readonly B[],
-  chainFirst: <A, B>(f: (a: A) => readonly B[]) => (ma: readonly A[]) => readonly A[],
-  duplicate: <A>(ma: readonly A[]) => readonly (readonly A[])[],
-  extend: <A, B>(f: (fa: readonly A[]) => B) => (ma: readonly A[]) => readonly B[],
-  filter: {
-    <A, B extends A>(refinement: Refinement<A, B>): (fa: readonly A[]) => readonly B[]
-    <A_1>(predicate: Predicate<A_1>): (fa: readonly A_1[]) => readonly A_1[]
-  },
-  filterMap: <A, B>(f: (a: A) => Option<B>) => (fa: readonly A[]) => readonly B[],
-  filterMapWithIndex: <A, B>(f: (i: number, a: A) => Option<B>) => (fa: readonly A[]) => readonly B[],
-  filterWithIndex: {
-    <A, B extends A>(refinementWithIndex: import('./FilterableWithIndex').RefinementWithIndex<number, A, B>): (
-      fa: readonly A[]
-    ) => readonly B[]
-    <A_1>(predicateWithIndex: import('./FilterableWithIndex').PredicateWithIndex<number, A_1>): (
-      fa: readonly A_1[]
-    ) => readonly A_1[]
-  },
-  foldMap: <M>(M: Monoid<M>) => <A>(f: (a: A) => M) => (fa: readonly A[]) => M,
-  foldMapWithIndex: <M>(M: Monoid<M>) => <A>(f: (i: number, a: A) => M) => (fa: readonly A[]) => M,
-  map: <A, B>(f: (a: A) => B) => (fa: readonly A[]) => readonly B[],
-  mapWithIndex: <A, B>(f: (i: number, a: A) => B) => (fa: readonly A[]) => readonly B[],
-  partition: {
-    <A, B extends A>(refinement: Refinement<A, B>): (fa: readonly A[]) => Separated<readonly A[], readonly B[]>
-    <A_1>(predicate: Predicate<A_1>): (fa: readonly A_1[]) => Separated<readonly A_1[], readonly A_1[]>
-  },
-  partitionMap: <A, B, C>(f: (a: A) => Either<B, C>) => (fa: readonly A[]) => Separated<readonly B[], readonly C[]>,
-  partitionMapWithIndex: <A, B, C>(
-    f: (i: number, a: A) => Either<B, C>
-  ) => (fa: readonly A[]) => Separated<readonly B[], readonly C[]>,
-  partitionWithIndex: {
-    <A, B extends A>(refinementWithIndex: import('./FilterableWithIndex').RefinementWithIndex<number, A, B>): (
-      fa: readonly A[]
-    ) => Separated<readonly A[], readonly B[]>
-    <A_1>(predicateWithIndex: import('./FilterableWithIndex').PredicateWithIndex<number, A_1>): (
-      fa: readonly A_1[]
-    ) => Separated<readonly A_1[], readonly A_1[]>
-  },
-  reduce: <A, B>(b: B, f: (b: B, a: A) => B) => (fa: readonly A[]) => B,
-  reduceRight: <A, B>(b: B, f: (a: A, b: B) => B) => (fa: readonly A[]) => B,
-  reduceRightWithIndex: <A, B>(b: B, f: (i: number, a: A, b: B) => B) => (fa: readonly A[]) => B,
-  reduceWithIndex: <A, B>(b: B, f: (i: number, b: B, a: A) => B) => (fa: readonly A[]) => B,
-  compact: <A>(fa: readonly Option<A>[]) => readonly A[],
-  separate: <A, B>(fa: readonly Either<A, B>[]) => Separated<readonly A[], readonly B[]>
+declare const alt: <A>(that: () => readonly A[]) => (fa: readonly A[]) => readonly A[]
+declare const ap: <A>(fa: readonly A[]) => <B>(fab: readonly ((a: A) => B)[]) => readonly B[]
+declare const apFirst: <B>(fb: readonly B[]) => <A>(fa: readonly A[]) => readonly A[]
+declare const apSecond: <B>(fb: readonly B[]) => <A>(fa: readonly A[]) => readonly B[]
+declare const chain: <A, B>(f: (a: A) => readonly B[]) => (ma: readonly A[]) => readonly B[]
+declare const chainFirst: <A, B>(f: (a: A) => readonly B[]) => (ma: readonly A[]) => readonly A[]
+declare const duplicate: <A>(ma: readonly A[]) => readonly (readonly A[])[]
+declare const extend: <A, B>(f: (fa: readonly A[]) => B) => (ma: readonly A[]) => readonly B[]
+declare const filter: {
+  <A, B extends A>(refinement: Refinement<A, B>): (fa: readonly A[]) => readonly B[]
+  <A_1>(predicate: Predicate<A_1>): (fa: readonly A_1[]) => readonly A_1[]
+}
+declare const filterMap: <A, B>(f: (a: A) => Option<B>) => (fa: readonly A[]) => readonly B[]
+declare const filterMapWithIndex: <A, B>(f: (i: number, a: A) => Option<B>) => (fa: readonly A[]) => readonly B[]
+declare const filterWithIndex: {
+  <A, B extends A>(refinementWithIndex: import('./FilterableWithIndex').RefinementWithIndex<number, A, B>): (
+    fa: readonly A[]
+  ) => readonly B[]
+  <A_1>(predicateWithIndex: import('./FilterableWithIndex').PredicateWithIndex<number, A_1>): (
+    fa: readonly A_1[]
+  ) => readonly A_1[]
+}
+declare const foldMap: <M>(M: Monoid<M>) => <A>(f: (a: A) => M) => (fa: readonly A[]) => M
+declare const foldMapWithIndex: <M>(M: Monoid<M>) => <A>(f: (i: number, a: A) => M) => (fa: readonly A[]) => M
+declare const map: <A, B>(f: (a: A) => B) => (fa: readonly A[]) => readonly B[]
+declare const mapWithIndex: <A, B>(f: (i: number, a: A) => B) => (fa: readonly A[]) => readonly B[]
+declare const partition: {
+  <A, B extends A>(refinement: Refinement<A, B>): (fa: readonly A[]) => Separated<readonly A[], readonly B[]>
+  <A_1>(predicate: Predicate<A_1>): (fa: readonly A_1[]) => Separated<readonly A_1[], readonly A_1[]>
+}
+declare const partitionWithIndex: {
+  <A, B extends A>(refinementWithIndex: import('./FilterableWithIndex').RefinementWithIndex<number, A, B>): (
+    fa: readonly A[]
+  ) => Separated<readonly A[], readonly B[]>
+  <A_1>(predicateWithIndex: import('./FilterableWithIndex').PredicateWithIndex<number, A_1>): (
+    fa: readonly A_1[]
+  ) => Separated<readonly A_1[], readonly A_1[]>
+}
+declare const partitionMap: <A, B, C>(
+  f: (a: A) => Either<B, C>
+) => (fa: readonly A[]) => Separated<readonly B[], readonly C[]>
+declare const partitionMapWithIndex: <A, B, C>(
+  f: (i: number, a: A) => Either<B, C>
+) => (fa: readonly A[]) => Separated<readonly B[], readonly C[]>
+declare const reduce: <A, B>(b: B, f: (b: B, a: A) => B) => (fa: readonly A[]) => B
+declare const reduceWithIndex: <A, B>(b: B, f: (i: number, b: B, a: A) => B) => (fa: readonly A[]) => B
+declare const reduceRight: <A, B>(b: B, f: (a: A, b: B) => B) => (fa: readonly A[]) => B
+declare const reduceRightWithIndex: <A, B>(b: B, f: (i: number, a: A, b: B) => B) => (fa: readonly A[]) => B
+declare const compact: <A>(fa: readonly Option<A>[]) => readonly A[]
+declare const separate: <A, B>(fa: readonly Either<A, B>[]) => Separated<readonly A[], readonly B[]>
 export {
   /**
    * @since 2.5.0

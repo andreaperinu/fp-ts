@@ -698,28 +698,27 @@ export const option: Monad1<URI> &
   throwError: () => none
 }
 
-const {
-  alt,
-  ap,
-  apFirst,
-  apSecond,
-  chain,
-  chainFirst,
-  duplicate,
-  extend,
-  filter,
-  filterMap,
-  flatten,
-  foldMap,
-  map,
-  partition,
-  partitionMap,
-  reduce,
-  reduceRight,
-  compact,
-  separate,
-  fromEither
-} = pipeable(option)
+const pipeables = /*#__PURE__*/ pipeable(option)
+const alt = /*#__PURE__*/ (() => pipeables.alt)()
+const ap = /*#__PURE__*/ (() => pipeables.ap)()
+const apFirst = /*#__PURE__*/ (() => pipeables.apFirst)()
+const apSecond = /*#__PURE__*/ (() => pipeables.apSecond)()
+const chain = /*#__PURE__*/ (() => pipeables.chain)()
+const chainFirst = /*#__PURE__*/ (() => pipeables.chainFirst)()
+const duplicate = /*#__PURE__*/ (() => pipeables.duplicate)()
+const extend = /*#__PURE__*/ (() => pipeables.extend)()
+const filter = /*#__PURE__*/ (() => pipeables.filter)()
+const filterMap = /*#__PURE__*/ (() => pipeables.filterMap)()
+const flatten = /*#__PURE__*/ (() => pipeables.flatten)()
+const foldMap = /*#__PURE__*/ (() => pipeables.foldMap)()
+const map = /*#__PURE__*/ (() => pipeables.map)()
+const partition = /*#__PURE__*/ (() => pipeables.partition)()
+const partitionMap = /*#__PURE__*/ (() => pipeables.partitionMap)()
+const reduce = /*#__PURE__*/ (() => pipeables.reduce)()
+const reduceRight = /*#__PURE__*/ (() => pipeables.reduceRight)()
+const compact = /*#__PURE__*/ (() => pipeables.compact)()
+const separate = /*#__PURE__*/ (() => pipeables.separate)()
+const fromEither = /*#__PURE__*/ (() => pipeables.fromEither)()
 
 export {
   /**

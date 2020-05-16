@@ -573,7 +573,27 @@ export var option = {
     }; },
     throwError: function () { return none; }
 };
-var _a = pipeable(option), alt = _a.alt, ap = _a.ap, apFirst = _a.apFirst, apSecond = _a.apSecond, chain = _a.chain, chainFirst = _a.chainFirst, duplicate = _a.duplicate, extend = _a.extend, filter = _a.filter, filterMap = _a.filterMap, flatten = _a.flatten, foldMap = _a.foldMap, map = _a.map, partition = _a.partition, partitionMap = _a.partitionMap, reduce = _a.reduce, reduceRight = _a.reduceRight, compact = _a.compact, separate = _a.separate, fromEither = _a.fromEither;
+var pipeables = /*#__PURE__*/ pipeable(option);
+var alt = /*#__PURE__*/ (function () { return pipeables.alt; })();
+var ap = /*#__PURE__*/ (function () { return pipeables.ap; })();
+var apFirst = /*#__PURE__*/ (function () { return pipeables.apFirst; })();
+var apSecond = /*#__PURE__*/ (function () { return pipeables.apSecond; })();
+var chain = /*#__PURE__*/ (function () { return pipeables.chain; })();
+var chainFirst = /*#__PURE__*/ (function () { return pipeables.chainFirst; })();
+var duplicate = /*#__PURE__*/ (function () { return pipeables.duplicate; })();
+var extend = /*#__PURE__*/ (function () { return pipeables.extend; })();
+var filter = /*#__PURE__*/ (function () { return pipeables.filter; })();
+var filterMap = /*#__PURE__*/ (function () { return pipeables.filterMap; })();
+var flatten = /*#__PURE__*/ (function () { return pipeables.flatten; })();
+var foldMap = /*#__PURE__*/ (function () { return pipeables.foldMap; })();
+var map = /*#__PURE__*/ (function () { return pipeables.map; })();
+var partition = /*#__PURE__*/ (function () { return pipeables.partition; })();
+var partitionMap = /*#__PURE__*/ (function () { return pipeables.partitionMap; })();
+var reduce = /*#__PURE__*/ (function () { return pipeables.reduce; })();
+var reduceRight = /*#__PURE__*/ (function () { return pipeables.reduceRight; })();
+var compact = /*#__PURE__*/ (function () { return pipeables.compact; })();
+var separate = /*#__PURE__*/ (function () { return pipeables.separate; })();
+var fromEither = /*#__PURE__*/ (function () { return pipeables.fromEither; })();
 export { 
 /**
  * @since 2.0.0

@@ -749,7 +749,33 @@ export var array = {
     filterMapWithIndex: RA.readonlyArray.filterMapWithIndex,
     filterWithIndex: RA.readonlyArray.filterWithIndex
 };
-var _a = pipeable(array), alt = _a.alt, ap = _a.ap, apFirst = _a.apFirst, apSecond = _a.apSecond, chain = _a.chain, chainFirst = _a.chainFirst, duplicate = _a.duplicate, extend = _a.extend, filter = _a.filter, filterMap = _a.filterMap, filterMapWithIndex = _a.filterMapWithIndex, filterWithIndex = _a.filterWithIndex, foldMap = _a.foldMap, foldMapWithIndex = _a.foldMapWithIndex, map = _a.map, mapWithIndex = _a.mapWithIndex, partition = _a.partition, partitionMap = _a.partitionMap, partitionMapWithIndex = _a.partitionMapWithIndex, partitionWithIndex = _a.partitionWithIndex, reduce = _a.reduce, reduceRight = _a.reduceRight, reduceRightWithIndex = _a.reduceRightWithIndex, reduceWithIndex = _a.reduceWithIndex, compact = _a.compact, separate = _a.separate;
+var pipeables = /*#__PURE__*/ pipeable(array);
+var alt = /*#__PURE__*/ (function () { return pipeables.alt; })();
+var ap = /*#__PURE__*/ (function () { return pipeables.ap; })();
+var apFirst = /*#__PURE__*/ (function () { return pipeables.apFirst; })();
+var apSecond = /*#__PURE__*/ (function () { return pipeables.apSecond; })();
+var chain = /*#__PURE__*/ (function () { return pipeables.chain; })();
+var chainFirst = /*#__PURE__*/ (function () { return pipeables.chainFirst; })();
+var duplicate = /*#__PURE__*/ (function () { return pipeables.duplicate; })();
+var extend = /*#__PURE__*/ (function () { return pipeables.extend; })();
+var filter = /*#__PURE__*/ (function () { return pipeables.filter; })();
+var filterMap = /*#__PURE__*/ (function () { return pipeables.filterMap; })();
+var filterMapWithIndex = /*#__PURE__*/ (function () { return pipeables.filterMapWithIndex; })();
+var filterWithIndex = /*#__PURE__*/ (function () { return pipeables.filterWithIndex; })();
+var foldMap = /*#__PURE__*/ (function () { return pipeables.foldMap; })();
+var foldMapWithIndex = /*#__PURE__*/ (function () { return pipeables.foldMapWithIndex; })();
+var map = /*#__PURE__*/ (function () { return pipeables.map; })();
+var mapWithIndex = /*#__PURE__*/ (function () { return pipeables.mapWithIndex; })();
+var partition = /*#__PURE__*/ (function () { return pipeables.partition; })();
+var partitionWithIndex = /*#__PURE__*/ (function () { return pipeables.partitionWithIndex; })();
+var partitionMap = /*#__PURE__*/ (function () { return pipeables.partitionMap; })();
+var partitionMapWithIndex = /*#__PURE__*/ (function () { return pipeables.partitionMapWithIndex; })();
+var reduce = /*#__PURE__*/ (function () { return pipeables.reduce; })();
+var reduceWithIndex = /*#__PURE__*/ (function () { return pipeables.reduceWithIndex; })();
+var reduceRight = /*#__PURE__*/ (function () { return pipeables.reduceRight; })();
+var reduceRightWithIndex = /*#__PURE__*/ (function () { return pipeables.reduceRightWithIndex; })();
+var compact = /*#__PURE__*/ (function () { return pipeables.compact; })();
+var separate = /*#__PURE__*/ (function () { return pipeables.separate; })();
 export { 
 /**
  * @since 2.0.0

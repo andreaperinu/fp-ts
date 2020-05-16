@@ -303,4 +303,6 @@ export {
 /**
  * @since 2.0.0
  */
-export const ordDate: Ord<Date> = ord.contramap(ordNumber, (date) => date.valueOf())
+export const ordDate: Ord<Date> =
+  /*#__PURE__*/
+  ord.contramap(ordNumber, (date) => date.valueOf())

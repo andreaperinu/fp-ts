@@ -489,32 +489,9 @@ export const record: FunctorWithIndex1<URI, string> &
   Compactable1<URI> &
   FilterableWithIndex1<URI, string> &
   Witherable1<URI> &
-  FoldableWithIndex1<URI, string> = {
-  URI,
-  map: RR.readonlyRecord.map as any,
-  reduce: RR.readonlyRecord.reduce as any,
-  foldMap: RR.readonlyRecord.foldMap as any,
-  reduceRight: RR.readonlyRecord.reduceRight as any,
-  traverse: RR.readonlyRecord.traverse as any,
-  sequence,
-  compact: RR.readonlyRecord.compact as any,
-  separate: RR.readonlyRecord.separate as any,
-  filter: RR.readonlyRecord.filter as any,
-  filterMap: RR.readonlyRecord.filterMap as any,
-  partition: RR.readonlyRecord.partition as any,
-  partitionMap: RR.readonlyRecord.partitionMap as any,
-  wither: RR.readonlyRecord.wither as any,
-  wilt: RR.readonlyRecord.wilt as any,
-  mapWithIndex: RR.readonlyRecord.mapWithIndex as any,
-  reduceWithIndex: RR.readonlyRecord.reduceWithIndex as any,
-  foldMapWithIndex: RR.readonlyRecord.foldMapWithIndex as any,
-  reduceRightWithIndex: RR.readonlyRecord.reduceRightWithIndex as any,
-  traverseWithIndex: RR.readonlyRecord.traverseWithIndex as any,
-  partitionMapWithIndex: RR.readonlyRecord.partitionMapWithIndex as any,
-  partitionWithIndex: RR.readonlyRecord.partitionWithIndex as any,
-  filterMapWithIndex: RR.readonlyRecord.filterMapWithIndex as any,
-  filterWithIndex: RR.readonlyRecord.filterWithIndex as any
-}
+  FoldableWithIndex1<URI, string> =
+  /*@__PURE__*/
+  (() => Object.assign({}, RR.readonlyRecord, { URI }) as any)()
 
 const pipeables = /*@__PURE__*/ pipeable(record)
 const filter = /*@__PURE__*/ (() => pipeables.filter)()

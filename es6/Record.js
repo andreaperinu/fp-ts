@@ -152,32 +152,9 @@ export var elem = RR.elem;
 /**
  * @since 2.0.0
  */
-export var record = {
-    URI: URI,
-    map: RR.readonlyRecord.map,
-    reduce: RR.readonlyRecord.reduce,
-    foldMap: RR.readonlyRecord.foldMap,
-    reduceRight: RR.readonlyRecord.reduceRight,
-    traverse: RR.readonlyRecord.traverse,
-    sequence: sequence,
-    compact: RR.readonlyRecord.compact,
-    separate: RR.readonlyRecord.separate,
-    filter: RR.readonlyRecord.filter,
-    filterMap: RR.readonlyRecord.filterMap,
-    partition: RR.readonlyRecord.partition,
-    partitionMap: RR.readonlyRecord.partitionMap,
-    wither: RR.readonlyRecord.wither,
-    wilt: RR.readonlyRecord.wilt,
-    mapWithIndex: RR.readonlyRecord.mapWithIndex,
-    reduceWithIndex: RR.readonlyRecord.reduceWithIndex,
-    foldMapWithIndex: RR.readonlyRecord.foldMapWithIndex,
-    reduceRightWithIndex: RR.readonlyRecord.reduceRightWithIndex,
-    traverseWithIndex: RR.readonlyRecord.traverseWithIndex,
-    partitionMapWithIndex: RR.readonlyRecord.partitionMapWithIndex,
-    partitionWithIndex: RR.readonlyRecord.partitionWithIndex,
-    filterMapWithIndex: RR.readonlyRecord.filterMapWithIndex,
-    filterWithIndex: RR.readonlyRecord.filterWithIndex
-};
+export var record = 
+/*@__PURE__*/
+(function () { return Object.assign({}, RR.readonlyRecord, { URI: URI }); })();
 var pipeables = /*@__PURE__*/ pipeable(record);
 var filter = /*@__PURE__*/ (function () { return pipeables.filter; })();
 var filterMap = /*@__PURE__*/ (function () { return pipeables.filterMap; })();

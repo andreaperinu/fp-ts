@@ -7,7 +7,6 @@ import { Either } from './Either'
 import { Eq } from './Eq'
 import { Extend1 } from './Extend'
 import { FilterableWithIndex1 } from './FilterableWithIndex'
-import { Foldable1 } from './Foldable'
 import { FoldableWithIndex1 } from './FoldableWithIndex'
 import { Predicate, Refinement } from './function'
 import { FunctorWithIndex1 } from './FunctorWithIndex'
@@ -851,7 +850,6 @@ export declare const of: <A>(a: A) => readonly A[]
  * @since 2.5.0
  */
 export declare const readonlyArray: Monad1<URI> &
-  Foldable1<URI> &
   Unfoldable1<URI> &
   TraversableWithIndex1<URI, number> &
   Alternative1<URI> &

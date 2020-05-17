@@ -251,26 +251,31 @@ export var unzip = RA.unzip;
 /**
  * @since 2.5.0
  */
-export var readonlyNonEmptyArray = {
-    URI: URI,
-    map: RA.readonlyArray.map,
-    mapWithIndex: RA.readonlyArray.mapWithIndex,
-    of: of,
-    ap: RA.readonlyArray.ap,
-    chain: RA.readonlyArray.chain,
-    extend: RA.readonlyArray.extend,
-    extract: head,
-    reduce: RA.readonlyArray.reduce,
-    foldMap: RA.readonlyArray.foldMap,
-    reduceRight: RA.readonlyArray.reduceRight,
-    traverse: RA.readonlyArray.traverse,
-    sequence: RA.readonlyArray.sequence,
-    reduceWithIndex: RA.readonlyArray.reduceWithIndex,
-    foldMapWithIndex: RA.readonlyArray.foldMapWithIndex,
-    reduceRightWithIndex: RA.readonlyArray.reduceRightWithIndex,
-    traverseWithIndex: RA.readonlyArray.traverseWithIndex,
-    alt: function (fx, fy) { return concat(fx, fy()); }
-};
+export var readonlyNonEmptyArray = 
+/*@__PURE__*/
+(function () {
+    var _a = RA.readonlyArray, alt = _a.alt, map = _a.map, mapWithIndex = _a.mapWithIndex, of = _a.of, ap = _a.ap, chain = _a.chain, extend = _a.extend, reduce = _a.reduce, foldMap = _a.foldMap, reduceRight = _a.reduceRight, traverse = _a.traverse, sequence = _a.sequence, reduceRightWithIndex = _a.reduceRightWithIndex, foldMapWithIndex = _a.foldMapWithIndex, reduceWithIndex = _a.reduceWithIndex, traverseWithIndex = _a.traverseWithIndex;
+    return {
+        URI: URI,
+        extract: head,
+        alt: alt,
+        map: map,
+        mapWithIndex: mapWithIndex,
+        of: of,
+        ap: ap,
+        chain: chain,
+        extend: extend,
+        reduce: reduce,
+        foldMap: foldMap,
+        reduceRight: reduceRight,
+        traverse: traverse,
+        sequence: sequence,
+        reduceWithIndex: reduceWithIndex,
+        foldMapWithIndex: foldMapWithIndex,
+        reduceRightWithIndex: reduceRightWithIndex,
+        traverseWithIndex: traverseWithIndex
+    };
+})();
 var pipeables = /*@__PURE__*/ pipeable(readonlyNonEmptyArray);
 var alt = /*@__PURE__*/ (function () { return pipeables.alt; })();
 var ap = /*@__PURE__*/ (function () { return pipeables.ap; })();

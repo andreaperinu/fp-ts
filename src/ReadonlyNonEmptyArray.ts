@@ -370,26 +370,48 @@ export const readonlyNonEmptyArray: Monad1<URI> &
   TraversableWithIndex1<URI, number> &
   FunctorWithIndex1<URI, number> &
   FoldableWithIndex1<URI, number> &
-  Alt1<URI> = {
-  URI,
-  map: RA.readonlyArray.map as any,
-  mapWithIndex: RA.readonlyArray.mapWithIndex as any,
-  of,
-  ap: RA.readonlyArray.ap as any,
-  chain: RA.readonlyArray.chain as any,
-  extend: RA.readonlyArray.extend as any,
-  extract: head,
-  reduce: RA.readonlyArray.reduce,
-  foldMap: RA.readonlyArray.foldMap,
-  reduceRight: RA.readonlyArray.reduceRight,
-  traverse: RA.readonlyArray.traverse as any,
-  sequence: RA.readonlyArray.sequence as any,
-  reduceWithIndex: RA.readonlyArray.reduceWithIndex,
-  foldMapWithIndex: RA.readonlyArray.foldMapWithIndex,
-  reduceRightWithIndex: RA.readonlyArray.reduceRightWithIndex,
-  traverseWithIndex: RA.readonlyArray.traverseWithIndex as any,
-  alt: (fx, fy) => concat(fx, fy())
-}
+  Alt1<URI> =
+  /*@__PURE__*/
+  (() => {
+    const {
+      alt,
+      map,
+      mapWithIndex,
+      of,
+      ap,
+      chain,
+      extend,
+      reduce,
+      foldMap,
+      reduceRight,
+      traverse,
+      sequence,
+      reduceRightWithIndex,
+      foldMapWithIndex,
+      reduceWithIndex,
+      traverseWithIndex
+    } = RA.readonlyArray
+    return {
+      URI,
+      extract: head,
+      alt,
+      map,
+      mapWithIndex,
+      of,
+      ap,
+      chain,
+      extend,
+      reduce,
+      foldMap,
+      reduceRight,
+      traverse,
+      sequence,
+      reduceWithIndex,
+      foldMapWithIndex,
+      reduceRightWithIndex,
+      traverseWithIndex
+    } as any
+  })()
 
 const pipeables = /*@__PURE__*/ pipeable(readonlyNonEmptyArray)
 const alt = /*@__PURE__*/ (() => pipeables.alt)()

@@ -928,7 +928,7 @@ export const array: Monad1<URI> &
   FunctorWithIndex1<URI, number> &
   FoldableWithIndex1<URI, number> =
   /*@__PURE__*/
-  (() => Object.assign({}, RA.readonlyArray, { URI: URI }) as any)()
+  (() => Object.assign({}, RA.readonlyArray, { URI }) as any)()
 
 const pipeables = /*@__PURE__*/ pipeable(array)
 const alt = /*@__PURE__*/ (() => pipeables.alt)()

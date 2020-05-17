@@ -307,7 +307,7 @@ export const nonEmptyArray: Monad1<URI> &
   FoldableWithIndex1<URI, number> &
   Alt1<URI> =
   /*@__PURE__*/
-  (() => Object.assign({}, RNEA.readonlyNonEmptyArray, { URI: URI }) as any)()
+  (() => Object.assign({}, RNEA.readonlyNonEmptyArray, { URI }) as any)()
 
 const pipeables = /*@__PURE__*/ pipeable(nonEmptyArray)
 const alt = /*@__PURE__*/ (() => pipeables.alt)()

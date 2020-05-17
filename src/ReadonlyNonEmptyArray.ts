@@ -391,22 +391,22 @@ export const readonlyNonEmptyArray: Monad1<URI> &
   alt: (fx, fy) => concat(fx, fy())
 }
 
-const {
-  ap,
-  apFirst,
-  apSecond,
-  chain,
-  chainFirst,
-  duplicate,
-  extend,
-  flatten,
-  map,
-  mapWithIndex,
-  reduce,
-  reduceRight,
-  reduceRightWithIndex,
-  reduceWithIndex
-} = pipeable(readonlyNonEmptyArray)
+const pipeables = /*@__PURE__*/ pipeable(readonlyNonEmptyArray)
+const alt = /*@__PURE__*/ (() => pipeables.alt)()
+const ap = /*@__PURE__*/ (() => pipeables.ap)()
+const apFirst = /*@__PURE__*/ (() => pipeables.apFirst)()
+const apSecond = /*@__PURE__*/ (() => pipeables.apSecond)()
+const chain = /*@__PURE__*/ (() => pipeables.chain)()
+const chainFirst = /*@__PURE__*/ (() => pipeables.chainFirst)()
+const duplicate = /*@__PURE__*/ (() => pipeables.duplicate)()
+const extend = /*@__PURE__*/ (() => pipeables.extend)()
+const flatten = /*@__PURE__*/ (() => pipeables.flatten)()
+const map = /*@__PURE__*/ (() => pipeables.map)()
+const mapWithIndex = /*@__PURE__*/ (() => pipeables.mapWithIndex)()
+const reduce = /*@__PURE__*/ (() => pipeables.reduce)()
+const reduceWithIndex = /*@__PURE__*/ (() => pipeables.reduceWithIndex)()
+const reduceRight = /*@__PURE__*/ (() => pipeables.reduceRight)()
+const reduceRightWithIndex = /*@__PURE__*/ (() => pipeables.reduceRightWithIndex)()
 
 const foldMapWithIndex = <S>(S: Semigroup<S>) => <A>(f: (i: number, a: A) => S) => (fa: ReadonlyNonEmptyArray<A>) =>
   fa.slice(1).reduce((s, a, i) => S.concat(s, f(i + 1, a)), f(0, fa[0]))
@@ -415,6 +415,10 @@ const foldMap = <S>(S: Semigroup<S>) => <A>(f: (a: A) => S) => (fa: ReadonlyNonE
   fa.slice(1).reduce((s, a) => S.concat(s, f(a)), f(fa[0]))
 
 export {
+  /**
+   * @since 2.6.2
+   */
+  alt,
   /**
    * @since 2.5.0
    */

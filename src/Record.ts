@@ -516,7 +516,16 @@ export const record: FunctorWithIndex1<URI, string> &
   filterWithIndex: RR.readonlyRecord.filterWithIndex as any
 }
 
-const { filter, filterMap, foldMap, partition, partitionMap, reduce, reduceRight, compact, separate } = pipeable(record)
+const pipeables = /*@__PURE__*/ pipeable(record)
+const filter = /*@__PURE__*/ (() => pipeables.filter)()
+const filterMap = /*@__PURE__*/ (() => pipeables.filterMap)()
+const foldMap = /*@__PURE__*/ (() => pipeables.foldMap)()
+const partition = /*@__PURE__*/ (() => pipeables.partition)()
+const partitionMap = /*@__PURE__*/ (() => pipeables.partitionMap)()
+const reduce = /*@__PURE__*/ (() => pipeables.reduce)()
+const reduceRight = /*@__PURE__*/ (() => pipeables.reduceRight)()
+const compact = /*@__PURE__*/ (() => pipeables.compact)()
+const separate = /*@__PURE__*/ (() => pipeables.separate)()
 
 export {
   /**

@@ -241,7 +241,14 @@ export const map_: Filterable2<URI> = {
   partitionMap: RM.readonlyMap.partitionMap as any
 }
 
-const { filter, filterMap, map, partition, partitionMap, compact, separate } = pipeable(map_)
+const pipeables = /*@__PURE__*/ pipeable(map_)
+const filter = /*@__PURE__*/ (() => pipeables.filter)()
+const filterMap = /*@__PURE__*/ (() => pipeables.filterMap)()
+const map = /*@__PURE__*/ (() => pipeables.map)()
+const partition = /*@__PURE__*/ (() => pipeables.partition)()
+const partitionMap = /*@__PURE__*/ (() => pipeables.partitionMap)()
+const compact = /*@__PURE__*/ (() => pipeables.compact)()
+const separate = /*@__PURE__*/ (() => pipeables.separate)()
 
 export {
   /**

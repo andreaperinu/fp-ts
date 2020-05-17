@@ -290,7 +290,8 @@ export const ord: Contravariant1<URI> = {
   contramap: (fa, f) => fromCompare((x, y) => fa.compare(f(x), f(y)))
 }
 
-const { contramap } = pipeable(ord)
+const pipeables = /*@__PURE__*/ pipeable(ord)
+const contramap = /*@__PURE__*/ (() => pipeables.contramap)()
 
 export {
   /**

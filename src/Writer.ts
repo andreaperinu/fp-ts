@@ -108,7 +108,8 @@ export const writer: Functor2<URI> = {
   map: T.map
 }
 
-const { map } = pipeable(writer)
+const pipeables = /*@__PURE__*/ pipeable(writer)
+const map = /*@__PURE__*/ (() => pipeables.map)()
 
 export {
   /**

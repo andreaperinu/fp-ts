@@ -92,7 +92,16 @@ export const tuple: Semigroupoid2<URI> & Bifunctor2<URI> & Comonad2<URI> & Folda
   sequence: RT.readonlyTuple.sequence as any
 }
 
-const { bimap, compose, duplicate, extend, foldMap, map, mapLeft, reduce, reduceRight } = pipeable(tuple)
+const pipeables = /*@__PURE__*/ pipeable(tuple)
+const bimap = /*@__PURE__*/ (() => pipeables.bimap)()
+const compose = /*@__PURE__*/ (() => pipeables.compose)()
+const duplicate = /*@__PURE__*/ (() => pipeables.duplicate)()
+const extend = /*@__PURE__*/ (() => pipeables.extend)()
+const foldMap = /*@__PURE__*/ (() => pipeables.foldMap)()
+const map = /*@__PURE__*/ (() => pipeables.map)()
+const mapLeft = /*@__PURE__*/ (() => pipeables.mapLeft)()
+const reduce = /*@__PURE__*/ (() => pipeables.reduce)()
+const reduceRight = /*@__PURE__*/ (() => pipeables.reduceRight)()
 
 export {
   /**

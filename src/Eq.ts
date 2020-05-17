@@ -121,7 +121,8 @@ export const eq: Contravariant1<URI> = {
   contramap: (fa, f) => fromEquals((x, y) => fa.equals(f(x), f(y)))
 }
 
-const { contramap } = pipeable(eq)
+const pipeables = /*@__PURE__*/ pipeable(eq)
+const contramap = /*@__PURE__*/ (() => pipeables.contramap)()
 
 export {
   /**

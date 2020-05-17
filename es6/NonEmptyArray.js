@@ -178,6 +178,20 @@ export var zip = RNEA.zip;
  * @since 2.5.1
  */
 export var unzip = RNEA.unzip;
+// ------------------------------------
+// pipeables
+// ------------------------------------
+/**
+ * @since 2.0.0
+ */
+export var map = RNEA.map;
+/**
+ * @since 2.0.0
+ */
+export var chain = RNEA.chain;
+// ------------------------------------
+// instances
+// ------------------------------------
 /**
  * @since 2.0.0
  */
@@ -189,12 +203,10 @@ var alt = /*@__PURE__*/ (function () { return pipeables.alt; })();
 var ap = /*@__PURE__*/ (function () { return pipeables.ap; })();
 var apFirst = /*@__PURE__*/ (function () { return pipeables.apFirst; })();
 var apSecond = /*@__PURE__*/ (function () { return pipeables.apSecond; })();
-var chain = /*@__PURE__*/ (function () { return pipeables.chain; })();
 var chainFirst = /*@__PURE__*/ (function () { return pipeables.chainFirst; })();
 var duplicate = /*@__PURE__*/ (function () { return pipeables.duplicate; })();
 var extend = /*@__PURE__*/ (function () { return pipeables.extend; })();
 var flatten = /*@__PURE__*/ (function () { return pipeables.flatten; })();
-var map = /*@__PURE__*/ (function () { return pipeables.map; })();
 var mapWithIndex = /*@__PURE__*/ (function () { return pipeables.mapWithIndex; })();
 var reduce = /*@__PURE__*/ (function () { return pipeables.reduce; })();
 var reduceWithIndex = /*@__PURE__*/ (function () { return pipeables.reduceWithIndex; })();
@@ -223,10 +235,6 @@ apSecond,
 /**
  * @since 2.0.0
  */
-chain, 
-/**
- * @since 2.0.0
- */
 chainFirst, 
 /**
  * @since 2.0.0
@@ -248,10 +256,6 @@ foldMap,
  * @since 2.0.0
  */
 foldMapWithIndex, 
-/**
- * @since 2.0.0
- */
-map, 
 /**
  * @since 2.0.0
  */

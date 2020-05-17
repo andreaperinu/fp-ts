@@ -234,6 +234,14 @@ export declare const unzip: <A, B>(as: NonEmptyArray<[A, B]>) => [NonEmptyArray<
 /**
  * @since 2.0.0
  */
+export declare const map: <A, B>(f: (a: A) => B) => (fa: NonEmptyArray<A>) => NonEmptyArray<B>
+/**
+ * @since 2.0.0
+ */
+export declare const chain: <A, B>(f: (a: A) => NonEmptyArray<B>) => (ma: NonEmptyArray<A>) => NonEmptyArray<B>
+/**
+ * @since 2.0.0
+ */
 export declare const nonEmptyArray: Monad1<URI> &
   Comonad1<URI> &
   TraversableWithIndex1<URI, number> &
@@ -244,12 +252,10 @@ declare const alt: <A>(that: () => NonEmptyArray<A>) => (fa: NonEmptyArray<A>) =
 declare const ap: <A>(fa: NonEmptyArray<A>) => <B>(fab: NonEmptyArray<(a: A) => B>) => NonEmptyArray<B>
 declare const apFirst: <B>(fb: NonEmptyArray<B>) => <A>(fa: NonEmptyArray<A>) => NonEmptyArray<A>
 declare const apSecond: <B>(fb: NonEmptyArray<B>) => <A>(fa: NonEmptyArray<A>) => NonEmptyArray<B>
-declare const chain: <A, B>(f: (a: A) => NonEmptyArray<B>) => (ma: NonEmptyArray<A>) => NonEmptyArray<B>
 declare const chainFirst: <A, B>(f: (a: A) => NonEmptyArray<B>) => (ma: NonEmptyArray<A>) => NonEmptyArray<A>
 declare const duplicate: <A>(ma: NonEmptyArray<A>) => NonEmptyArray<NonEmptyArray<A>>
 declare const extend: <A, B>(f: (fa: NonEmptyArray<A>) => B) => (ma: NonEmptyArray<A>) => NonEmptyArray<B>
 declare const flatten: <A>(mma: NonEmptyArray<NonEmptyArray<A>>) => NonEmptyArray<A>
-declare const map: <A, B>(f: (a: A) => B) => (fa: NonEmptyArray<A>) => NonEmptyArray<B>
 declare const mapWithIndex: <A, B>(f: (i: number, a: A) => B) => (fa: NonEmptyArray<A>) => NonEmptyArray<B>
 declare const reduce: <A, B>(b: B, f: (b: B, a: A) => B) => (fa: NonEmptyArray<A>) => B
 declare const reduceWithIndex: <A, B>(b: B, f: (i: number, b: B, a: A) => B) => (fa: NonEmptyArray<A>) => B
@@ -279,10 +285,6 @@ export {
   /**
    * @since 2.0.0
    */
-  chain,
-  /**
-   * @since 2.0.0
-   */
   chainFirst,
   /**
    * @since 2.0.0
@@ -304,10 +306,6 @@ export {
    * @since 2.0.0
    */
   foldMapWithIndex,
-  /**
-   * @since 2.0.0
-   */
-  map,
   /**
    * @since 2.0.0
    */

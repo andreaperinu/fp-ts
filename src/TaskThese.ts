@@ -15,7 +15,7 @@ import { getTheseM } from './TheseT'
 
 import These = TH.These
 
-const T = getTheseM(task)
+const T = /*@__PURE__*/ getTheseM(task)
 
 declare module './HKT' {
   interface URItoKind2<E, A> {

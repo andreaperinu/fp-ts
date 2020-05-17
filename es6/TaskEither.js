@@ -15,7 +15,7 @@ import { getFilterableComposition } from './Filterable';
 import { pipeable } from './pipeable';
 import { getSemigroup as getTaskSemigroup, task } from './Task';
 import { getValidationM } from './ValidationT';
-var T = getEitherM(task);
+var T = /*@__PURE__*/ getEitherM(task);
 /**
  * @since 2.0.0
  */

@@ -76,21 +76,9 @@ export function getTupleEq() {
 /**
  * @since 2.0.0
  */
-export var eq = {
-    URI: URI,
-    contramap: function (fa, f) { return fromEquals(function (x, y) { return fa.equals(f(x), f(y)); }); }
+export var eqDate = {
+    equals: function (x, y) { return x.valueOf() === y.valueOf(); }
 };
-var pipeables = /*@__PURE__*/ pipeable(eq);
-var contramap = /*@__PURE__*/ (function () { return pipeables.contramap; })();
-export { 
-/**
- * @since 2.0.0
- */
-contramap };
-/**
- * @since 2.0.0
- */
-export var eqDate = eq.contramap(eqNumber, function (date) { return date.valueOf(); });
 var empty = {
     equals: function () { return true; }
 };
@@ -103,3 +91,17 @@ export function getMonoid() {
         empty: empty
     };
 }
+/**
+ * @since 2.0.0
+ */
+export var eq = {
+    URI: URI,
+    contramap: function (fa, f) { return fromEquals(function (x, y) { return fa.equals(f(x), f(y)); }); }
+};
+var pipeables = /*@__PURE__*/ pipeable(eq);
+var contramap = /*@__PURE__*/ (function () { return pipeables.contramap; })();
+export { 
+/**
+ * @since 2.0.0
+ */
+contramap };

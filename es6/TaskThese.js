@@ -13,7 +13,7 @@ import { pipeable } from './pipeable';
 import { getSemigroup as getTaskSemigroup, task } from './Task';
 import * as TH from './These';
 import { getTheseM } from './TheseT';
-var T = getTheseM(task);
+var T = /*@__PURE__*/ getTheseM(task);
 /**
  * @since 2.4.0
  */

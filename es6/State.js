@@ -1,7 +1,7 @@
 import { getStateM } from './StateT';
 import { identity } from './Identity';
 import { pipeable } from './pipeable';
-var T = getStateM(identity);
+var T = /*@__PURE__*/ getStateM(identity);
 /**
  * @since 2.0.0
  */

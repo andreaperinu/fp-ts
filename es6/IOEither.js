@@ -15,7 +15,7 @@ import { getFilterableComposition } from './Filterable';
 import { getSemigroup as getIOSemigroup, io } from './IO';
 import { pipeable } from './pipeable';
 import { getValidationM } from './ValidationT';
-var T = getEitherM(io);
+var T = /*@__PURE__*/ getEitherM(io);
 /**
  * @since 2.0.0
  */

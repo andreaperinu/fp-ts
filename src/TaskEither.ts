@@ -23,7 +23,7 @@ import { getValidationM } from './ValidationT'
 
 import Either = E.Either
 
-const T = getEitherM(task)
+const T = /*@__PURE__*/ getEitherM(task)
 
 declare module './HKT' {
   interface URItoKind2<E, A> {

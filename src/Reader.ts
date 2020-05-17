@@ -14,7 +14,7 @@ import { Semigroup } from './Semigroup'
 import { Strong2 } from './Strong'
 import { pipeable } from './pipeable'
 
-const T = getReaderM(identity)
+const T = /*@__PURE__*/ getReaderM(identity)
 
 declare module './HKT' {
   interface URItoKind2<E, A> {

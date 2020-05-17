@@ -20,7 +20,7 @@ import { TaskEither } from './TaskEither'
 
 import ReaderTaskEither = RTE.ReaderTaskEither
 
-const T = getStateM(RTE.readerTaskEither)
+const T = /*@__PURE__*/ getStateM(RTE.readerTaskEither)
 
 declare module './HKT' {
   interface URItoKind4<S, R, E, A> {

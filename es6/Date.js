@@ -1,4 +1,3 @@
-import { eqNumber, contramap } from './Eq';
 /**
  * Returns the current `Date`
  *
@@ -14,12 +13,18 @@ export var now = function () { return new Date().getTime(); };
 /**
  * @since 2.6.0
  */
-export var eqDate = contramap(function (x) { return x.getDate(); })(eqNumber);
+export var eqDate = {
+    equals: function (x, y) { return x.getDate() === y.getDate(); }
+};
 /**
  * @since 2.6.0
  */
-export var eqMonth = contramap(function (x) { return x.getMonth(); })(eqNumber);
+export var eqMonth = {
+    equals: function (x, y) { return x.getMonth() === y.getMonth(); }
+};
 /**
  * @since 2.6.0
  */
-export var eqYear = contramap(function (x) { return x.getFullYear(); })(eqNumber);
+export var eqYear = {
+    equals: function (x, y) { return x.getFullYear() === y.getFullYear(); }
+};

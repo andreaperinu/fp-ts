@@ -8,7 +8,7 @@ import { getStateM } from './StateT'
 import { identity } from './Identity'
 import { pipeable } from './pipeable'
 
-const T = getStateM(identity)
+const T = /*@__PURE__*/ getStateM(identity)
 
 declare module './HKT' {
   interface URItoKind2<E, A> {

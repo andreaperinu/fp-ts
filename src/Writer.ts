@@ -8,7 +8,7 @@ import { Monoid } from './Monoid'
 import { pipeable } from './pipeable'
 import { getWriterM } from './WriterT'
 
-const T = getWriterM(identity)
+const T = /*@__PURE__*/ getWriterM(identity)
 
 declare module './HKT' {
   interface URItoKind2<E, A> {

@@ -90,6 +90,14 @@ export declare function getTupleEq<T extends ReadonlyArray<Eq<any>>>(
 /**
  * @since 2.0.0
  */
+export declare const eqDate: Eq<Date>
+/**
+ * @since 2.6.0
+ */
+export declare function getMonoid<A>(): Monoid<Eq<A>>
+/**
+ * @since 2.0.0
+ */
 export declare const eq: Contravariant1<URI>
 declare const contramap: <A, B>(f: (b: B) => A) => (fa: Eq<A>) => Eq<B>
 export {
@@ -98,11 +106,3 @@ export {
    */
   contramap
 }
-/**
- * @since 2.0.0
- */
-export declare const eqDate: Eq<Date>
-/**
- * @since 2.6.0
- */
-export declare function getMonoid<A>(): Monoid<Eq<A>>

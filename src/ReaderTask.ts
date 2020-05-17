@@ -13,7 +13,7 @@ import * as TA from './Task'
 
 import Task = TA.Task
 
-const T = getReaderM(TA.task)
+const T = /*@__PURE__*/ getReaderM(TA.task)
 
 declare module './HKT' {
   interface URItoKind2<E, A> {

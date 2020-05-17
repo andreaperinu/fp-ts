@@ -13,7 +13,7 @@ import { pipeable } from './pipeable';
 import { getSemigroup as getReaderSemigroup } from './Reader';
 import { getReaderM } from './ReaderT';
 import * as TA from './Task';
-var T = getReaderM(TA.task);
+var T = /*@__PURE__*/ getReaderM(TA.task);
 /**
  * @since 2.3.0
  */

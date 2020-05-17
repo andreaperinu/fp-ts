@@ -12,7 +12,7 @@ var __assign = (this && this.__assign) || function () {
 import { pipeable } from './pipeable';
 import * as RTE from './ReaderTaskEither';
 import { getStateM } from './StateT';
-var T = getStateM(RTE.readerTaskEither);
+var T = /*@__PURE__*/ getStateM(RTE.readerTaskEither);
 /**
  * @since 2.0.0
  */

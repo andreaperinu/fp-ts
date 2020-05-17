@@ -3,7 +3,7 @@ import { identity as id } from './function';
 import { identity } from './Identity';
 import { getReaderM } from './ReaderT';
 import { pipeable } from './pipeable';
-var T = getReaderM(identity);
+var T = /*@__PURE__*/ getReaderM(identity);
 /**
  * @since 2.0.0
  */

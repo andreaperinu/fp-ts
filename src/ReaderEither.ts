@@ -15,7 +15,7 @@ import { getValidationM } from './ValidationT'
 
 import Either = E.Either
 
-const T = getEitherM(reader)
+const T = /*@__PURE__*/ getEitherM(reader)
 
 declare module './HKT' {
   interface URItoKind3<R, E, A> {

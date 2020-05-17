@@ -12,7 +12,7 @@ var __assign = (this && this.__assign) || function () {
 import { identity } from './Identity';
 import { pipeable } from './pipeable';
 import { getWriterM } from './WriterT';
-var T = getWriterM(identity);
+var T = /*@__PURE__*/ getWriterM(identity);
 /**
  * @since 2.0.0
  */

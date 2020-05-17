@@ -15,7 +15,7 @@ import { getReaderM } from './ReaderT';
 import { readerTask } from './ReaderTask';
 import * as TE from './TaskEither';
 import { getValidationM } from './ValidationT';
-var T = getReaderM(TE.taskEither);
+var T = /*@__PURE__*/ getReaderM(TE.taskEither);
 /**
  * @since 2.0.0
  */

@@ -14,7 +14,7 @@ import { getEitherM } from './EitherT';
 import { pipeable } from './pipeable';
 import { getSemigroup as getReaderSemigroup, reader } from './Reader';
 import { getValidationM } from './ValidationT';
-var T = getEitherM(reader);
+var T = /*@__PURE__*/ getEitherM(reader);
 /**
  * @since 2.0.0
  */

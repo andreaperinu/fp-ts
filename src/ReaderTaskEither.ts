@@ -22,7 +22,7 @@ import { getValidationM } from './ValidationT'
 
 import TaskEither = TE.TaskEither
 
-const T = getReaderM(TE.taskEither)
+const T = /*@__PURE__*/ getReaderM(TE.taskEither)
 
 declare module './HKT' {
   interface URItoKind3<R, E, A> {

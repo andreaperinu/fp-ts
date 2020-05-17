@@ -136,16 +136,9 @@ export var getWitherable = RM.getWitherable;
 /**
  * @since 2.0.0
  */
-export var map_ = {
-    URI: URI,
-    map: RM.readonlyMap.map,
-    compact: RM.readonlyMap.compact,
-    separate: RM.readonlyMap.separate,
-    filter: RM.readonlyMap.filter,
-    filterMap: RM.readonlyMap.filterMap,
-    partition: RM.readonlyMap.partition,
-    partitionMap: RM.readonlyMap.partitionMap
-};
+export var map_ = 
+/*@__PURE__*/
+(function () { return Object.assign({}, RM.readonlyMap, { URI: URI }); })();
 var pipeables = /*@__PURE__*/ pipeable(map_);
 var filter = /*@__PURE__*/ (function () { return pipeables.filter; })();
 var filterMap = /*@__PURE__*/ (function () { return pipeables.filterMap; })();

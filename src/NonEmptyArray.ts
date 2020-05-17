@@ -305,26 +305,9 @@ export const nonEmptyArray: Monad1<URI> &
   TraversableWithIndex1<URI, number> &
   FunctorWithIndex1<URI, number> &
   FoldableWithIndex1<URI, number> &
-  Alt1<URI> = {
-  URI,
-  map: RNEA.readonlyNonEmptyArray.map as any,
-  mapWithIndex: RNEA.readonlyNonEmptyArray.mapWithIndex as any,
-  of,
-  ap: RNEA.readonlyNonEmptyArray.ap as any,
-  chain: RNEA.readonlyNonEmptyArray.chain as any,
-  extend: RNEA.readonlyNonEmptyArray.extend as any,
-  extract: head,
-  reduce: RNEA.readonlyNonEmptyArray.reduce,
-  foldMap: RNEA.readonlyNonEmptyArray.foldMap,
-  reduceRight: RNEA.readonlyNonEmptyArray.reduceRight,
-  traverse: RNEA.readonlyNonEmptyArray.traverse as any,
-  sequence: RNEA.readonlyNonEmptyArray.sequence as any,
-  reduceWithIndex: RNEA.readonlyNonEmptyArray.reduceWithIndex,
-  foldMapWithIndex: RNEA.readonlyNonEmptyArray.foldMapWithIndex,
-  reduceRightWithIndex: RNEA.readonlyNonEmptyArray.reduceRightWithIndex,
-  traverseWithIndex: RNEA.readonlyNonEmptyArray.traverseWithIndex as any,
-  alt: RNEA.readonlyNonEmptyArray.alt as any
-}
+  Alt1<URI> =
+  /*@__PURE__*/
+  (() => Object.assign({}, RNEA.readonlyNonEmptyArray, { URI: URI }) as any)()
 
 const pipeables = /*@__PURE__*/ pipeable(nonEmptyArray)
 const alt = /*@__PURE__*/ (() => pipeables.alt)()

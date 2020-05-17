@@ -181,26 +181,9 @@ export var unzip = RNEA.unzip;
 /**
  * @since 2.0.0
  */
-export var nonEmptyArray = {
-    URI: URI,
-    map: RNEA.readonlyNonEmptyArray.map,
-    mapWithIndex: RNEA.readonlyNonEmptyArray.mapWithIndex,
-    of: of,
-    ap: RNEA.readonlyNonEmptyArray.ap,
-    chain: RNEA.readonlyNonEmptyArray.chain,
-    extend: RNEA.readonlyNonEmptyArray.extend,
-    extract: head,
-    reduce: RNEA.readonlyNonEmptyArray.reduce,
-    foldMap: RNEA.readonlyNonEmptyArray.foldMap,
-    reduceRight: RNEA.readonlyNonEmptyArray.reduceRight,
-    traverse: RNEA.readonlyNonEmptyArray.traverse,
-    sequence: RNEA.readonlyNonEmptyArray.sequence,
-    reduceWithIndex: RNEA.readonlyNonEmptyArray.reduceWithIndex,
-    foldMapWithIndex: RNEA.readonlyNonEmptyArray.foldMapWithIndex,
-    reduceRightWithIndex: RNEA.readonlyNonEmptyArray.reduceRightWithIndex,
-    traverseWithIndex: RNEA.readonlyNonEmptyArray.traverseWithIndex,
-    alt: RNEA.readonlyNonEmptyArray.alt
-};
+export var nonEmptyArray = 
+/*@__PURE__*/
+(function () { return Object.assign({}, RNEA.readonlyNonEmptyArray, { URI: URI }); })();
 var pipeables = /*@__PURE__*/ pipeable(nonEmptyArray);
 var alt = /*@__PURE__*/ (function () { return pipeables.alt; })();
 var ap = /*@__PURE__*/ (function () { return pipeables.ap; })();

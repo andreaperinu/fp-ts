@@ -39,20 +39,9 @@ export var getChainRec = RT.getChainRec;
 /**
  * @since 2.0.0
  */
-export var tuple = {
-    URI: URI,
-    compose: RT.readonlyTuple.compose,
-    map: RT.readonlyTuple.map,
-    bimap: RT.readonlyTuple.bimap,
-    mapLeft: RT.readonlyTuple.mapLeft,
-    extract: fst,
-    extend: RT.readonlyTuple.extend,
-    reduce: RT.readonlyTuple.reduce,
-    foldMap: RT.readonlyTuple.foldMap,
-    reduceRight: RT.readonlyTuple.reduceRight,
-    traverse: RT.readonlyTuple.traverse,
-    sequence: RT.readonlyTuple.sequence
-};
+export var tuple = 
+/*@__PURE__*/
+(function () { return Object.assign({}, RT.readonlyTuple, { URI: URI }); })();
 var pipeables = /*@__PURE__*/ pipeable(tuple);
 var bimap = /*@__PURE__*/ (function () { return pipeables.bimap; })();
 var compose = /*@__PURE__*/ (function () { return pipeables.compose; })();

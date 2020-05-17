@@ -77,20 +77,9 @@ export const getChainRec: <S>(M: Monoid<S>) => ChainRec2C<URI, S> = RT.getChainR
 /**
  * @since 2.0.0
  */
-export const tuple: Semigroupoid2<URI> & Bifunctor2<URI> & Comonad2<URI> & Foldable2<URI> & Traversable2<URI> = {
-  URI,
-  compose: RT.readonlyTuple.compose as any,
-  map: RT.readonlyTuple.map as any,
-  bimap: RT.readonlyTuple.bimap as any,
-  mapLeft: RT.readonlyTuple.mapLeft as any,
-  extract: fst,
-  extend: RT.readonlyTuple.extend as any,
-  reduce: RT.readonlyTuple.reduce as any,
-  foldMap: RT.readonlyTuple.foldMap as any,
-  reduceRight: RT.readonlyTuple.reduceRight as any,
-  traverse: RT.readonlyTuple.traverse as any,
-  sequence: RT.readonlyTuple.sequence as any
-}
+export const tuple: Semigroupoid2<URI> & Bifunctor2<URI> & Comonad2<URI> & Foldable2<URI> & Traversable2<URI> =
+  /*@__PURE__*/
+  (() => Object.assign({}, RT.readonlyTuple, { URI }) as any)()
 
 const pipeables = /*@__PURE__*/ pipeable(tuple)
 const bimap = /*@__PURE__*/ (() => pipeables.bimap)()

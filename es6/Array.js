@@ -716,39 +716,9 @@ export var of = RA.of;
 /**
  * @since 2.0.0
  */
-export var array = {
-    URI: URI,
-    map: RA.readonlyArray.map,
-    mapWithIndex: RA.readonlyArray.mapWithIndex,
-    compact: RA.readonlyArray.compact,
-    separate: RA.readonlyArray.separate,
-    filter: RA.readonlyArray.filter,
-    filterMap: RA.readonlyArray.filterMap,
-    partition: RA.readonlyArray.partition,
-    partitionMap: RA.readonlyArray.partitionMap,
-    of: of,
-    ap: RA.readonlyArray.ap,
-    chain: RA.readonlyArray.chain,
-    reduce: RA.readonlyArray.reduce,
-    foldMap: RA.readonlyArray.foldMap,
-    reduceRight: RA.readonlyArray.reduceRight,
-    unfold: RA.readonlyArray.unfold,
-    traverse: RA.readonlyArray.traverse,
-    sequence: RA.readonlyArray.sequence,
-    zero: RA.readonlyArray.zero,
-    alt: RA.readonlyArray.alt,
-    extend: RA.readonlyArray.extend,
-    wither: RA.readonlyArray.wither,
-    wilt: RA.readonlyArray.wilt,
-    reduceWithIndex: RA.readonlyArray.reduceWithIndex,
-    foldMapWithIndex: RA.readonlyArray.foldMapWithIndex,
-    reduceRightWithIndex: RA.readonlyArray.reduceRightWithIndex,
-    traverseWithIndex: RA.readonlyArray.traverseWithIndex,
-    partitionMapWithIndex: RA.readonlyArray.partitionMapWithIndex,
-    partitionWithIndex: RA.readonlyArray.partitionWithIndex,
-    filterMapWithIndex: RA.readonlyArray.filterMapWithIndex,
-    filterWithIndex: RA.readonlyArray.filterWithIndex
-};
+export var array = 
+/*@__PURE__*/
+(function () { return Object.assign({}, RA.readonlyArray, { URI: URI }); })();
 var pipeables = /*@__PURE__*/ pipeable(array);
 var alt = /*@__PURE__*/ (function () { return pipeables.alt; })();
 var ap = /*@__PURE__*/ (function () { return pipeables.ap; })();

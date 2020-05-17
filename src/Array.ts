@@ -926,39 +926,9 @@ export const array: Monad1<URI> &
   FilterableWithIndex1<URI, number> &
   Witherable1<URI> &
   FunctorWithIndex1<URI, number> &
-  FoldableWithIndex1<URI, number> = {
-  URI,
-  map: RA.readonlyArray.map as any,
-  mapWithIndex: RA.readonlyArray.mapWithIndex as any,
-  compact: RA.readonlyArray.compact as any,
-  separate: RA.readonlyArray.separate as any,
-  filter: RA.readonlyArray.filter as any,
-  filterMap: RA.readonlyArray.filterMap as any,
-  partition: RA.readonlyArray.partition as any,
-  partitionMap: RA.readonlyArray.partitionMap as any,
-  of,
-  ap: RA.readonlyArray.ap as any,
-  chain: RA.readonlyArray.chain as any,
-  reduce: RA.readonlyArray.reduce as any,
-  foldMap: RA.readonlyArray.foldMap as any,
-  reduceRight: RA.readonlyArray.reduceRight as any,
-  unfold: RA.readonlyArray.unfold as any,
-  traverse: RA.readonlyArray.traverse as any,
-  sequence: RA.readonlyArray.sequence as any,
-  zero: RA.readonlyArray.zero as any,
-  alt: RA.readonlyArray.alt as any,
-  extend: RA.readonlyArray.extend as any,
-  wither: RA.readonlyArray.wither as any,
-  wilt: RA.readonlyArray.wilt as any,
-  reduceWithIndex: RA.readonlyArray.reduceWithIndex as any,
-  foldMapWithIndex: RA.readonlyArray.foldMapWithIndex as any,
-  reduceRightWithIndex: RA.readonlyArray.reduceRightWithIndex as any,
-  traverseWithIndex: RA.readonlyArray.traverseWithIndex as any,
-  partitionMapWithIndex: RA.readonlyArray.partitionMapWithIndex as any,
-  partitionWithIndex: RA.readonlyArray.partitionWithIndex as any,
-  filterMapWithIndex: RA.readonlyArray.filterMapWithIndex as any,
-  filterWithIndex: RA.readonlyArray.filterWithIndex as any
-}
+  FoldableWithIndex1<URI, number> =
+  /*@__PURE__*/
+  (() => Object.assign({}, RA.readonlyArray, { URI: URI }) as any)()
 
 const pipeables = /*@__PURE__*/ pipeable(array)
 const alt = /*@__PURE__*/ (() => pipeables.alt)()

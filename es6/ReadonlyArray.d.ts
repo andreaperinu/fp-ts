@@ -849,6 +849,14 @@ export declare const of: <A>(a: A) => readonly A[]
 /**
  * @since 2.5.0
  */
+export declare const map: <A, B>(f: (a: A) => B) => (fa: ReadonlyArray<A>) => ReadonlyArray<B>
+/**
+ * @since 2.5.0
+ */
+export declare const chain: <A, B>(f: (a: A) => ReadonlyArray<B>) => (ma: ReadonlyArray<A>) => ReadonlyArray<B>
+/**
+ * @since 2.5.0
+ */
 export declare const readonlyArray: Monad1<URI> &
   Unfoldable1<URI> &
   TraversableWithIndex1<URI, number> &
@@ -863,7 +871,6 @@ declare const alt: <A>(that: () => readonly A[]) => (fa: readonly A[]) => readon
 declare const ap: <A>(fa: readonly A[]) => <B>(fab: readonly ((a: A) => B)[]) => readonly B[]
 declare const apFirst: <B>(fb: readonly B[]) => <A>(fa: readonly A[]) => readonly A[]
 declare const apSecond: <B>(fb: readonly B[]) => <A>(fa: readonly A[]) => readonly B[]
-declare const chain: <A, B>(f: (a: A) => readonly B[]) => (ma: readonly A[]) => readonly B[]
 declare const chainFirst: <A, B>(f: (a: A) => readonly B[]) => (ma: readonly A[]) => readonly A[]
 declare const duplicate: <A>(ma: readonly A[]) => readonly (readonly A[])[]
 declare const extend: <A, B>(f: (fa: readonly A[]) => B) => (ma: readonly A[]) => readonly B[]
@@ -883,7 +890,6 @@ declare const filterWithIndex: {
 }
 declare const foldMap: <M>(M: Monoid<M>) => <A>(f: (a: A) => M) => (fa: readonly A[]) => M
 declare const foldMapWithIndex: <M>(M: Monoid<M>) => <A>(f: (i: number, a: A) => M) => (fa: readonly A[]) => M
-declare const map: <A, B>(f: (a: A) => B) => (fa: readonly A[]) => readonly B[]
 declare const mapWithIndex: <A, B>(f: (i: number, a: A) => B) => (fa: readonly A[]) => readonly B[]
 declare const partition: {
   <A, B extends A>(refinement: Refinement<A, B>): (fa: readonly A[]) => Separated<readonly A[], readonly B[]>
@@ -929,10 +935,6 @@ export {
   /**
    * @since 2.5.0
    */
-  chain,
-  /**
-   * @since 2.5.0
-   */
   chainFirst,
   /**
    * @since 2.5.0
@@ -966,10 +968,6 @@ export {
    * @since 2.5.0
    */
   foldMapWithIndex,
-  /**
-   * @since 2.5.0
-   */
-  map,
   /**
    * @since 2.5.0
    */

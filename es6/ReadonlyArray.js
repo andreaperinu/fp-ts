@@ -1133,12 +1133,51 @@ export function difference(E) {
  * @since 2.5.0
  */
 export var of = function (a) { return [a]; };
+// ------------------------------------
+// pipeables
+// ------------------------------------
+var map_ = function (fa, f) { return fa.map(function (a) { return f(a); }); };
+/**
+ * @since 2.5.0
+ */
+export var map = function (f) { return function (fa) { return map_(fa, f); }; };
+var chain_ = function (ma, f) {
+    var resLen = 0;
+    var l = ma.length;
+    var temp = new Array(l);
+    for (var i = 0; i < l; i++) {
+        var e = ma[i];
+        var arr = f(e);
+        resLen += arr.length;
+        temp[i] = arr;
+    }
+    var r = Array(resLen);
+    var start = 0;
+    for (var i = 0; i < l; i++) {
+        var arr = temp[i];
+        var l_1 = arr.length;
+        for (var j = 0; j < l_1; j++) {
+            r[j + start] = arr[j];
+        }
+        start += l_1;
+    }
+    return r;
+};
+/**
+ * @since 2.5.0
+ */
+export var chain = function (f) { return function (ma) {
+    return chain_(ma, f);
+}; };
+// ------------------------------------
+// instances
+// ------------------------------------
 /**
  * @since 2.5.0
  */
 export var readonlyArray = {
     URI: URI,
-    map: function (fa, f) { return fa.map(function (a) { return f(a); }); },
+    map: map_,
     mapWithIndex: function (fa, f) { return fa.map(function (a, i) { return f(i, a); }); },
     compact: function (as) { return readonlyArray.filterMap(as, identity); },
     separate: function (fa) {
@@ -1170,28 +1209,7 @@ export var readonlyArray = {
     partitionMap: function (fa, f) { return readonlyArray.partitionMapWithIndex(fa, function (_, a) { return f(a); }); },
     of: of,
     ap: function (fab, fa) { return flatten(readonlyArray.map(fab, function (f) { return readonlyArray.map(fa, f); })); },
-    chain: function (fa, f) {
-        var resLen = 0;
-        var l = fa.length;
-        var temp = new Array(l);
-        for (var i = 0; i < l; i++) {
-            var e = fa[i];
-            var arr = f(e);
-            resLen += arr.length;
-            temp[i] = arr;
-        }
-        var r = Array(resLen);
-        var start = 0;
-        for (var i = 0; i < l; i++) {
-            var arr = temp[i];
-            var l_1 = arr.length;
-            for (var j = 0; j < l_1; j++) {
-                r[j + start] = arr[j];
-            }
-            start += l_1;
-        }
-        return r;
-    },
+    chain: chain_,
     reduce: function (fa, b, f) { return readonlyArray.reduceWithIndex(fa, b, function (_, b, a) { return f(b, a); }); },
     foldMap: function (M) {
         var foldMapWithIndexM = readonlyArray.foldMapWithIndex(M);
@@ -1308,7 +1326,6 @@ var alt = /*@__PURE__*/ (function () { return pipeables.alt; })();
 var ap = /*@__PURE__*/ (function () { return pipeables.ap; })();
 var apFirst = /*@__PURE__*/ (function () { return pipeables.apFirst; })();
 var apSecond = /*@__PURE__*/ (function () { return pipeables.apSecond; })();
-var chain = /*@__PURE__*/ (function () { return pipeables.chain; })();
 var chainFirst = /*@__PURE__*/ (function () { return pipeables.chainFirst; })();
 var duplicate = /*@__PURE__*/ (function () { return pipeables.duplicate; })();
 var extend = /*@__PURE__*/ (function () { return pipeables.extend; })();
@@ -1318,7 +1335,6 @@ var filterMapWithIndex = /*@__PURE__*/ (function () { return pipeables.filterMap
 var filterWithIndex = /*@__PURE__*/ (function () { return pipeables.filterWithIndex; })();
 var foldMap = /*@__PURE__*/ (function () { return pipeables.foldMap; })();
 var foldMapWithIndex = /*@__PURE__*/ (function () { return pipeables.foldMapWithIndex; })();
-var map = /*@__PURE__*/ (function () { return pipeables.map; })();
 var mapWithIndex = /*@__PURE__*/ (function () { return pipeables.mapWithIndex; })();
 var partition = /*@__PURE__*/ (function () { return pipeables.partition; })();
 var partitionWithIndex = /*@__PURE__*/ (function () { return pipeables.partitionWithIndex; })();
@@ -1347,10 +1363,6 @@ apFirst,
  * @since 2.5.0
  */
 apSecond, 
-/**
- * @since 2.5.0
- */
-chain, 
 /**
  * @since 2.5.0
  */
@@ -1387,10 +1399,6 @@ foldMap,
  * @since 2.5.0
  */
 foldMapWithIndex, 
-/**
- * @since 2.5.0
- */
-map, 
 /**
  * @since 2.5.0
  */

@@ -1341,6 +1341,50 @@ export function difference<A>(E: Eq<A>): (xs: ReadonlyArray<A>, ys: ReadonlyArra
  */
 export const of = <A>(a: A): ReadonlyArray<A> => [a]
 
+// ------------------------------------
+// pipeables
+// ------------------------------------
+
+const map_: <A, B>(fa: ReadonlyArray<A>, f: (a: A) => B) => ReadonlyArray<B> = (fa, f) => fa.map((a) => f(a))
+
+/**
+ * @since 2.5.0
+ */
+export const map: <A, B>(f: (a: A) => B) => (fa: ReadonlyArray<A>) => ReadonlyArray<B> = (f) => (fa) => map_(fa, f)
+
+const chain_: <A, B>(ma: ReadonlyArray<A>, f: (a: A) => ReadonlyArray<B>) => ReadonlyArray<B> = (ma, f) => {
+  let resLen = 0
+  const l = ma.length
+  const temp = new Array(l)
+  for (let i = 0; i < l; i++) {
+    const e = ma[i]
+    const arr = f(e)
+    resLen += arr.length
+    temp[i] = arr
+  }
+  const r = Array(resLen)
+  let start = 0
+  for (let i = 0; i < l; i++) {
+    const arr = temp[i]
+    const l = arr.length
+    for (let j = 0; j < l; j++) {
+      r[j + start] = arr[j]
+    }
+    start += l
+  }
+  return r
+}
+
+/**
+ * @since 2.5.0
+ */
+export const chain: <A, B>(f: (a: A) => ReadonlyArray<B>) => (ma: ReadonlyArray<A>) => ReadonlyArray<B> = (f) => (ma) =>
+  chain_(ma, f)
+
+// ------------------------------------
+// instances
+// ------------------------------------
+
 /**
  * @since 2.5.0
  */
@@ -1355,7 +1399,7 @@ export const readonlyArray: Monad1<URI> &
   FunctorWithIndex1<URI, number> &
   FoldableWithIndex1<URI, number> = {
   URI,
-  map: (fa, f) => fa.map((a) => f(a)),
+  map: map_,
   mapWithIndex: (fa, f) => fa.map((a, i) => f(i, a)),
   compact: (as) => readonlyArray.filterMap(as, identity),
   separate: <B, C>(fa: ReadonlyArray<Either<B, C>>): Separated<ReadonlyArray<B>, ReadonlyArray<C>> => {
@@ -1385,28 +1429,7 @@ export const readonlyArray: Monad1<URI> &
   partitionMap: (fa, f) => readonlyArray.partitionMapWithIndex(fa, (_, a) => f(a)),
   of,
   ap: (fab, fa) => flatten(readonlyArray.map(fab, (f) => readonlyArray.map(fa, f))),
-  chain: (fa, f) => {
-    let resLen = 0
-    const l = fa.length
-    const temp = new Array(l)
-    for (let i = 0; i < l; i++) {
-      const e = fa[i]
-      const arr = f(e)
-      resLen += arr.length
-      temp[i] = arr
-    }
-    const r = Array(resLen)
-    let start = 0
-    for (let i = 0; i < l; i++) {
-      const arr = temp[i]
-      const l = arr.length
-      for (let j = 0; j < l; j++) {
-        r[j + start] = arr[j]
-      }
-      start += l
-    }
-    return r
-  },
+  chain: chain_,
   reduce: (fa, b, f) => readonlyArray.reduceWithIndex(fa, b, (_, b, a) => f(b, a)),
   foldMap: (M) => {
     const foldMapWithIndexM = readonlyArray.foldMapWithIndex(M)
@@ -1545,7 +1568,6 @@ const alt = /*@__PURE__*/ (() => pipeables.alt)()
 const ap = /*@__PURE__*/ (() => pipeables.ap)()
 const apFirst = /*@__PURE__*/ (() => pipeables.apFirst)()
 const apSecond = /*@__PURE__*/ (() => pipeables.apSecond)()
-const chain = /*@__PURE__*/ (() => pipeables.chain)()
 const chainFirst = /*@__PURE__*/ (() => pipeables.chainFirst)()
 const duplicate = /*@__PURE__*/ (() => pipeables.duplicate)()
 const extend = /*@__PURE__*/ (() => pipeables.extend)()
@@ -1555,7 +1577,6 @@ const filterMapWithIndex = /*@__PURE__*/ (() => pipeables.filterMapWithIndex)()
 const filterWithIndex = /*@__PURE__*/ (() => pipeables.filterWithIndex)()
 const foldMap = /*@__PURE__*/ (() => pipeables.foldMap)()
 const foldMapWithIndex = /*@__PURE__*/ (() => pipeables.foldMapWithIndex)()
-const map = /*@__PURE__*/ (() => pipeables.map)()
 const mapWithIndex = /*@__PURE__*/ (() => pipeables.mapWithIndex)()
 const partition = /*@__PURE__*/ (() => pipeables.partition)()
 const partitionWithIndex = /*@__PURE__*/ (() => pipeables.partitionWithIndex)()
@@ -1585,10 +1606,6 @@ export {
    * @since 2.5.0
    */
   apSecond,
-  /**
-   * @since 2.5.0
-   */
-  chain,
   /**
    * @since 2.5.0
    */
@@ -1625,10 +1642,6 @@ export {
    * @since 2.5.0
    */
   foldMapWithIndex,
-  /**
-   * @since 2.5.0
-   */
-  map,
   /**
    * @since 2.5.0
    */

@@ -252,6 +252,16 @@ export declare const unzip: <A, B>(
 /**
  * @since 2.5.0
  */
+export declare const map: <A, B>(f: (a: A) => B) => (fa: ReadonlyNonEmptyArray<A>) => ReadonlyNonEmptyArray<B>
+/**
+ * @since 2.5.0
+ */
+export declare const chain: <A, B>(
+  f: (a: A) => ReadonlyNonEmptyArray<B>
+) => (ma: ReadonlyNonEmptyArray<A>) => ReadonlyNonEmptyArray<B>
+/**
+ * @since 2.5.0
+ */
 export declare const readonlyNonEmptyArray: Monad1<URI> &
   Comonad1<URI> &
   TraversableWithIndex1<URI, number> &
@@ -270,9 +280,6 @@ declare const apFirst: <B>(
 declare const apSecond: <B>(
   fb: ReadonlyNonEmptyArray<B>
 ) => <A>(fa: ReadonlyNonEmptyArray<A>) => ReadonlyNonEmptyArray<B>
-declare const chain: <A, B>(
-  f: (a: A) => ReadonlyNonEmptyArray<B>
-) => (ma: ReadonlyNonEmptyArray<A>) => ReadonlyNonEmptyArray<B>
 declare const chainFirst: <A, B>(
   f: (a: A) => ReadonlyNonEmptyArray<B>
 ) => (ma: ReadonlyNonEmptyArray<A>) => ReadonlyNonEmptyArray<A>
@@ -281,7 +288,6 @@ declare const extend: <A, B>(
   f: (fa: ReadonlyNonEmptyArray<A>) => B
 ) => (ma: ReadonlyNonEmptyArray<A>) => ReadonlyNonEmptyArray<B>
 declare const flatten: <A>(mma: ReadonlyNonEmptyArray<ReadonlyNonEmptyArray<A>>) => ReadonlyNonEmptyArray<A>
-declare const map: <A, B>(f: (a: A) => B) => (fa: ReadonlyNonEmptyArray<A>) => ReadonlyNonEmptyArray<B>
 declare const mapWithIndex: <A, B>(
   f: (i: number, a: A) => B
 ) => (fa: ReadonlyNonEmptyArray<A>) => ReadonlyNonEmptyArray<B>
@@ -313,10 +319,6 @@ export {
   /**
    * @since 2.5.0
    */
-  chain,
-  /**
-   * @since 2.5.0
-   */
   chainFirst,
   /**
    * @since 2.5.0
@@ -338,10 +340,6 @@ export {
    * @since 2.5.0
    */
   foldMapWithIndex,
-  /**
-   * @since 2.5.0
-   */
-  map,
   /**
    * @since 2.5.0
    */

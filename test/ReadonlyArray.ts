@@ -11,6 +11,7 @@ import * as O from '../src/Option'
 import * as Ord from '../src/Ord'
 import * as _ from '../src/ReadonlyArray'
 import { showString } from '../src/Show'
+import { pipe } from '../src/pipeable'
 
 describe('ReadonlyArray', () => {
   const as: ReadonlyArray<number> = [1, 2, 3]
@@ -377,6 +378,13 @@ describe('ReadonlyArray', () => {
       _.readonlyArray.map([1, 2, 3], (n) => n * 2),
       [2, 4, 6]
     )
+    assert.deepStrictEqual(
+      pipe(
+        [1, 2, 3],
+        _.map((n) => n * 2)
+      ),
+      [2, 4, 6]
+    )
   })
 
   it('mapWithIndex', () => {
@@ -400,6 +408,13 @@ describe('ReadonlyArray', () => {
   it('chain', () => {
     assert.deepStrictEqual(
       _.readonlyArray.chain([1, 2, 3], (n) => [n, n + 1]),
+      [1, 2, 2, 3, 3, 4]
+    )
+    assert.deepStrictEqual(
+      pipe(
+        [1, 2, 3],
+        _.chain((n) => [n, n + 1])
+      ),
       [1, 2, 2, 3, 3, 4]
     )
   })

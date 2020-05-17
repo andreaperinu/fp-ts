@@ -362,6 +362,26 @@ export const unzip: <A, B>(
   as: ReadonlyNonEmptyArray<readonly [A, B]>
 ) => readonly [ReadonlyNonEmptyArray<A>, ReadonlyNonEmptyArray<B>] = RA.unzip as any
 
+// ------------------------------------
+// pipeables
+// ------------------------------------
+
+/**
+ * @since 2.5.0
+ */
+export const map: <A, B>(f: (a: A) => B) => (fa: ReadonlyNonEmptyArray<A>) => ReadonlyNonEmptyArray<B> = RA.map as any
+
+/**
+ * @since 2.5.0
+ */
+export const chain: <A, B>(
+  f: (a: A) => ReadonlyNonEmptyArray<B>
+) => (ma: ReadonlyNonEmptyArray<A>) => ReadonlyNonEmptyArray<B> = RA.chain as any
+
+// ------------------------------------
+// instances
+// ------------------------------------
+
 /**
  * @since 2.5.0
  */
@@ -418,12 +438,10 @@ const alt = /*@__PURE__*/ (() => pipeables.alt)()
 const ap = /*@__PURE__*/ (() => pipeables.ap)()
 const apFirst = /*@__PURE__*/ (() => pipeables.apFirst)()
 const apSecond = /*@__PURE__*/ (() => pipeables.apSecond)()
-const chain = /*@__PURE__*/ (() => pipeables.chain)()
 const chainFirst = /*@__PURE__*/ (() => pipeables.chainFirst)()
 const duplicate = /*@__PURE__*/ (() => pipeables.duplicate)()
 const extend = /*@__PURE__*/ (() => pipeables.extend)()
 const flatten = /*@__PURE__*/ (() => pipeables.flatten)()
-const map = /*@__PURE__*/ (() => pipeables.map)()
 const mapWithIndex = /*@__PURE__*/ (() => pipeables.mapWithIndex)()
 const reduce = /*@__PURE__*/ (() => pipeables.reduce)()
 const reduceWithIndex = /*@__PURE__*/ (() => pipeables.reduceWithIndex)()
@@ -456,10 +474,6 @@ export {
   /**
    * @since 2.5.0
    */
-  chain,
-  /**
-   * @since 2.5.0
-   */
   chainFirst,
   /**
    * @since 2.5.0
@@ -481,10 +495,6 @@ export {
    * @since 2.5.0
    */
   foldMapWithIndex,
-  /**
-   * @since 2.5.0
-   */
-  map,
   /**
    * @since 2.5.0
    */

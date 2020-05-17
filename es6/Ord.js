@@ -16,9 +16,9 @@ import { pipeable } from './pipeable';
  */
 export var URI = 'Ord';
 // default compare for primitive types
-var compare = function (x, y) {
+function compare(x, y) {
     return x < y ? -1 : x > y ? 1 : 0;
-};
+}
 function strictEqual(a, b) {
     return a === b;
 }
@@ -121,9 +121,6 @@ export function fromCompare(compare) {
         compare: optimizedCompare
     };
 }
-var S = {
-    concat: function (x, y) { return fromCompare(function (a, b) { return monoidOrdering.concat(x.compare(a, b), y.compare(a, b)); }); }
-};
 /**
  * Use `getMonoid` instead
  *
@@ -131,13 +128,10 @@ var S = {
  * @deprecated
  */
 export function getSemigroup() {
-    return S;
+    return {
+        concat: function (x, y) { return fromCompare(function (a, b) { return monoidOrdering.concat(x.compare(a, b), y.compare(a, b)); }); }
+    };
 }
-var M = {
-    // tslint:disable-next-line: deprecation
-    concat: getSemigroup().concat,
-    empty: fromCompare(function () { return 0; })
-};
 /**
  * Returns a `Monoid` such that:
  *
@@ -202,7 +196,12 @@ var M = {
  * @since 2.4.0
  */
 export function getMonoid() {
-    return M;
+    // tslint:disable-next-line: deprecation
+    var S = getSemigroup();
+    return {
+        concat: S.concat,
+        empty: fromCompare(function () { return 0; })
+    };
 }
 /**
  * Given a tuple of `Ord`s returns an `Ord` for the tuple
@@ -257,4 +256,6 @@ contramap };
 /**
  * @since 2.0.0
  */
-export var ordDate = ord.contramap(ordNumber, function (date) { return date.valueOf(); });
+export var ordDate = 
+/*@__PURE__*/
+ord.contramap(ordNumber, function (date) { return date.valueOf(); });

@@ -131,8 +131,13 @@ export const task: Monad1<URI> & MonadTask1<URI> = {
  * @since 2.0.0
  */
 export const taskSeq: typeof task = {
-  ...task,
-  ap: (mab, ma) => () => mab().then((f) => ma().then((a) => f(a)))
+  URI,
+  map: task.map,
+  of: task.of,
+  ap: (mab, ma) => () => mab().then((f) => ma().then((a) => f(a))),
+  chain: task.chain,
+  fromIO: task.fromIO,
+  fromTask: task.fromTask
 }
 
 const pipeables = /*@__PURE__*/ pipeable(task)

@@ -1,14 +1,3 @@
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 import { pipeable } from './pipeable';
 import { identity } from './function';
 /**
@@ -110,7 +99,15 @@ export var task = {
  *
  * @since 2.0.0
  */
-export var taskSeq = __assign(__assign({}, task), { ap: function (mab, ma) { return function () { return mab().then(function (f) { return ma().then(function (a) { return f(a); }); }); }; } });
+export var taskSeq = {
+    URI: URI,
+    map: task.map,
+    of: task.of,
+    ap: function (mab, ma) { return function () { return mab().then(function (f) { return ma().then(function (a) { return f(a); }); }); }; },
+    chain: task.chain,
+    fromIO: task.fromIO,
+    fromTask: task.fromTask
+};
 var pipeables = /*@__PURE__*/ pipeable(task);
 var ap = /*@__PURE__*/ (function () { return pipeables.ap; })();
 var apFirst = /*@__PURE__*/ (function () { return pipeables.apFirst; })();

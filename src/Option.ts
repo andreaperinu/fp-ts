@@ -36,7 +36,7 @@ import { Eq } from './Eq'
 import { Extend1 } from './Extend'
 import { Filterable1 } from './Filterable'
 import { Foldable1 } from './Foldable'
-import { Lazy, Predicate, Refinement } from './function'
+import { Lazy, Predicate, Refinement, identity } from './function'
 import { HKT } from './HKT'
 import { Monad1 } from './Monad'
 import { Monoid } from './Monoid'
@@ -625,8 +625,6 @@ export function getMonoid<A>(S: Semigroup<A>): Monoid<Option<A>> {
 }
 
 const defaultSeparate = { left: none, right: none }
-
-const identity = <A>(a: A): A => a
 
 /**
  * @since 2.0.0

@@ -10,6 +10,7 @@ import { MonadTask1 } from './MonadTask'
 import { Monoid } from './Monoid'
 import { pipeable } from './pipeable'
 import { Semigroup } from './Semigroup'
+import { identity } from './function'
 
 declare module './HKT' {
   interface URItoKind<A> {
@@ -89,8 +90,6 @@ export function delay(millis: number): <A>(ma: Task<A>) => Task<A> {
 export function fromIO<A>(ma: IO<A>): Task<A> {
   return () => Promise.resolve(ma())
 }
-
-const identity = <A>(a: A): A => a
 
 /**
  * @since 2.0.0

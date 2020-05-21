@@ -9,6 +9,7 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
+import { identity } from './function';
 import { pipeable } from './pipeable';
 /**
  * @since 2.0.0
@@ -513,7 +514,6 @@ export function getMonoid(S) {
     };
 }
 var defaultSeparate = { left: none, right: none };
-var identity = function (a) { return a; };
 /**
  * @since 2.0.0
  */

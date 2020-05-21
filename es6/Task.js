@@ -10,6 +10,7 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 import { pipeable } from './pipeable';
+import { identity } from './function';
 /**
  * @since 2.0.0
  */
@@ -65,7 +66,6 @@ export function delay(millis) {
 export function fromIO(ma) {
     return function () { return Promise.resolve(ma()); };
 }
-var identity = function (a) { return a; };
 /**
  * @since 2.0.0
  */
